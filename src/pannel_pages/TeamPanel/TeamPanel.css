@@ -1,0 +1,1306 @@
+.team_panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-card);
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.team_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 20px 24px;
+  border-bottom: 1px solid var(--border-primary);
+  transition: border-color 0.3s ease;
+}
+
+.team_header_left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.team_back_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  margin-top: 2px;
+}
+
+.team_back_btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.team_header_content {
+  flex: 1;
+}
+
+.team_title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.team_invite_btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  background: var(--primary-color);
+  color: var(--text-inverse);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.team_invite_btn:hover {
+  background: var(--primary-hover);
+}
+
+.team_content {
+  flex: 1;
+  padding: 24px;
+  padding-top: 0;
+  overflow-y: auto;
+}
+
+/* Team Members */
+.team_members_section {
+  margin-bottom: 32px;
+}
+
+.team_member_card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.team_member_card:hover {
+  border-color: var(--border-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.team_member_info {
+  display: flex;
+  gap: 16px;
+}
+
+.team_member_avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-inverse);
+  font-weight: 600;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+
+.team_member_details {
+  flex: 1;
+}
+
+.team_member_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.team_member_name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.team_owner_badge {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.team_member_status {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--success-color);
+  background: var(--success-light);
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.team_member_email {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 8px 0;
+  transition: color 0.3s ease;
+}
+
+.team_member_role_container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.team_member_role {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.team_edit_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.team_edit_btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.team_member_activity {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* Role Permissions */
+.team_permissions_section {
+  margin-top: 32px;
+}
+
+.team_permissions_title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 20px 0;
+  transition: color 0.3s ease;
+}
+
+.team_role_card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.team_role_card:first-child {
+  background: var(--primary-color);
+  color: var(--text-inverse);
+}
+
+.team_role_card:first-child .team_role_name,
+.team_role_card:first-child .team_role_description {
+  color: var(--text-inverse);
+}
+
+.team_role_card:first-child .team_permission_text {
+  color: var(--text-inverse);
+}
+
+.team_role_header {
+  margin-bottom: 16px;
+}
+
+.team_role_info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.team_role_icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.team_role_card:first-child .team_role_icon {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: var(--text-inverse) !important;
+}
+
+.team_role_name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 2px 0;
+  transition: color 0.3s ease;
+}
+
+.team_role_description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.team_role_permissions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.team_permission_item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.team_permission_icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.team_permission_icon.allowed {
+  background: var(--success-color);
+  color: var(--text-inverse);
+}
+
+.team_permission_icon.denied {
+  background: var(--error-color);
+  color: var(--text-inverse);
+}
+
+.team_role_card:first-child .team_permission_icon.allowed {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-inverse);
+}
+
+.team_role_card:first-child .team_permission_icon.denied {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-inverse);
+}
+
+.team_permission_text {
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+/* Scrollbar Styling */
+.team_content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.team_content::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 3px;
+}
+
+.team_content::-webkit-scrollbar-thumb {
+  background: var(--border-secondary);
+  border-radius: 3px;
+}
+
+.team_content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Team Bottom Actions */
+.team_bottom_actions {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 16px;
+  margin-top: 14px;
+  margin-right: 20px;
+}
+
+.team_bottom_actions .team_refresh_btn,
+.team_bottom_actions .team_invite_btn {
+  min-width: 120px;
+  height: 44px;
+  font-weight: 500;
+}
+
+.team_bottom_actions .team_refresh_btn {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+}
+
+.team_bottom_actions .team_refresh_btn:hover {
+  background: var(--hover-bg);
+  border-color: var(--border-secondary);
+}
+
+.team_bottom_actions .team_invite_btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.team_bottom_actions .team_invite_btn:hover {
+  background: var(--primary-hover);
+}
+
+.team_bottom_actions .team_invite_btn:disabled {
+  background: var(--bg-muted);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* Team Header Updates */
+.team_header_actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.team_refresh_btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 12px;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.team_refresh_btn:hover {
+  background: var(--hover-bg);
+  border-color: var(--border-secondary);
+  color: var(--text-primary);
+}
+
+.team_refresh_btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.team_stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.team_stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+/* Password Display Banner */
+.team_password_banner {
+  background: linear-gradient(
+    135deg,
+    var(--success-color),
+    var(--success-light)
+  );
+  border: 1px solid var(--success-color);
+  border-radius: 12px;
+  margin: 16px 24px;
+  padding: 0;
+  overflow: hidden;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.team_password_content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  color: white;
+}
+
+.team_password_icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.team_password_info {
+  flex: 1;
+}
+
+.team_password_info strong {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.team_password_info p {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.team_password_credentials {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+  font-family: "Courier New", monospace;
+}
+
+.team_password_credentials span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.team_password_note {
+  font-size: 12px;
+  opacity: 0.8;
+  margin: 8px 0 0 0 !important;
+}
+
+.team_password_close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.team_password_close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Subscription Info */
+.team_subscription_info {
+  margin-top: 32px;
+}
+
+.team_subscription_card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.team_subscription_icon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-color);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.team_subscription_details h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  transition: color 0.3s ease;
+}
+
+.team_subscription_details p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 8px 0;
+  transition: color 0.3s ease;
+}
+
+.team_subscription_warning {
+  color: var(--warning-color) !important;
+  font-weight: 500;
+}
+
+/* View Modal */
+.view_modal {
+  max-width: 500px;
+}
+
+.admin_view_info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.admin_view_avatar {
+  width: 60px;
+  height: 60px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.admin_view_details h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  transition: color 0.3s ease;
+}
+
+.admin_view_details p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 8px 0;
+  transition: color 0.3s ease;
+}
+
+.admin_view_meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin_view_role {
+  background: var(--primary-light);
+  color: var(--primary-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.admin_view_status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.admin_view_status.active {
+  background: var(--success-light);
+  color: var(--success-color);
+}
+
+.admin_view_status.inactive {
+  background: var(--error-light);
+  color: var(--error-color);
+}
+
+.admin_view_permissions h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+  transition: color 0.3s ease;
+}
+
+.admin_permissions_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.admin_permission_item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.admin_permission_status {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin_permission_status.allowed {
+  background: var(--success-color);
+  color: white;
+}
+
+.admin_permission_status.denied {
+  background: var(--error-color);
+  color: white;
+}
+
+.admin_view_dates {
+  padding-top: 16px;
+  border-top: 1px solid var(--border-primary);
+}
+
+.admin_view_date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.admin_view_date strong {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+/* Team Member Actions */
+.team_member_actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.team_action_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team_action_btn.edit_btn {
+  color: var(--text-secondary);
+}
+
+.team_action_btn.edit_btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.team_action_btn.delete_btn {
+  color: #ef4444;
+}
+
+.team_action_btn.delete_btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+/* Modal Styles */
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal_content {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+}
+
+.modal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 0 24px;
+  margin-bottom: 24px;
+}
+
+.modal_title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.modal_close_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.modal_close_btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.modal_body {
+  padding: 0 24px;
+}
+
+.modal_footer {
+  padding: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Invite Modal Specific Styles */
+.invite_modal {
+  max-width: 600px;
+}
+
+.form_group {
+  margin-bottom: 20px;
+}
+
+.form_label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.form_input {
+  width: 100%;
+}
+
+.select_wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.form_select {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 14px;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form_select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(22, 152, 141, 0.1);
+}
+
+.select_icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.permissions_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.permission_item {
+  display: flex;
+  align-items: center;
+}
+
+.permission_label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  width: 100%;
+  position: relative;
+}
+
+.permission_checkbox {
+  display: none;
+}
+
+.permission_text {
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-primary);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.permission_checkbox:checked + .permission_text + .checkmark {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.send_invite_btn {
+  width: 100%;
+  height: 48px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.send_invite_btn:hover {
+  background: var(--primary-hover);
+}
+
+/* Delete Modal Specific Styles */
+.delete_modal {
+  max-width: 400px;
+}
+
+.delete_warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.warning_icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.delete_message {
+  font-size: 14px;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.delete_footer {
+  /* justify-content: space-between; */
+}
+
+.cancel_btn {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel_btn:hover {
+  background: var(--hover-bg);
+  border-color: var(--border-secondary);
+}
+
+.remove_btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove_btn:hover {
+  background: #dc2626;
+}
+
+/* Responsive Modal Styles */
+@media (max-width: 480px) {
+  .modal_overlay {
+    padding: 16px;
+  }
+
+  .modal_content {
+    max-width: 100%;
+  }
+
+  .permissions_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal_header {
+    padding: 20px 20px 0 20px;
+  }
+
+  .modal_body {
+    padding: 0 20px;
+  }
+
+  .modal_footer {
+    padding: 20px;
+  }
+
+  .delete_footer {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cancel_btn,
+  .remove_btn {
+    width: 100%;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .team_stats {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .team_stat {
+    font-size: 11px;
+  }
+
+  .admin_permissions_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .team_content {
+    padding: 16px;
+  }
+
+  .team_header {
+    padding: 16px 16px 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .team_header_left {
+    width: 100%;
+  }
+
+  .team_header_actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .team_stats {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .team_stat {
+    font-size: 10px;
+  }
+
+  .team_password_banner {
+    margin: 16px;
+  }
+
+  .team_password_content {
+    padding: 12px 16px;
+  }
+
+  .team_password_credentials {
+    padding: 8px;
+  }
+
+  .team_subscription_card {
+    padding: 16px;
+  }
+
+  .team_bottom_actions {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+  }
+
+  .team_bottom_actions .team_refresh_btn,
+  .team_bottom_actions .team_invite_btn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .view_modal {
+    max-width: 100%;
+    margin: 0 16px;
+  }
+
+  .admin_view_info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .admin_permissions_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .team_header_actions {
+    gap: 8px;
+  }
+
+  .team_password_info strong {
+    font-size: 14px;
+  }
+
+  .team_password_credentials span {
+    font-size: 12px;
+  }
+
+  .team_bottom_actions {
+    padding: 16px;
+  }
+
+  .team_bottom_actions .team_refresh_btn,
+  .team_bottom_actions .team_invite_btn {
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+/* Dark theme specific adjustments */
+.dark .team_password_banner {
+  background: linear-gradient(135deg, var(--success-color), #1a5a3a);
+}
+
+.dark .team_subscription_card {
+  background: var(--bg-secondary);
+}
+
+.dark .admin_view_info {
+  border-bottom-color: var(--border-secondary);
+}
+
+.dark .admin_view_dates {
+  border-top-color: var(--border-secondary);
+}
+/* Access Denied Styles */
+.team_access_denied {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px 20px;
+}
+
+.team_access_denied_content {
+  text-align: center;
+  max-width: 500px;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 40px 32px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-primary);
+}
+
+.team_access_denied_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: var(--warning-bg);
+  border-radius: 50%;
+  margin: 0 auto 24px auto;
+  color: var(--warning-color);
+}
+
+.team_access_denied_title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+}
+
+.team_access_denied_message {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+}
+
+.team_access_denied_info {
+  background: var(--bg-muted);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+.team_access_denied_detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.team_access_denied_detail:last-child {
+  border-bottom: none;
+}
+
+.team_access_denied_detail strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.team_access_denied_note {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 24px 0 32px 0;
+  font-style: italic;
+}
+
+.team_access_denied_button {
+  min-width: 180px;
+}
+
+/* Responsive Design for Access Denied */
+@media (max-width: 768px) {
+  .team_access_denied {
+    min-height: 50vh;
+    padding: 20px 16px;
+  }
+
+  .team_access_denied_content {
+    padding: 32px 24px;
+  }
+
+  .team_access_denied_icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .team_access_denied_title {
+    font-size: 20px;
+  }
+
+  .team_access_denied_message {
+    font-size: 15px;
+  }
+
+  .team_access_denied_info {
+    padding: 16px;
+  }
+
+  .team_access_denied_detail {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+/* Dark theme adjustments for access denied */
+.dark .team_access_denied_content {
+  background: var(--bg-primary);
+  border-color: var(--border-secondary);
+}
+
+.dark .team_access_denied_info {
+  background: var(--bg-secondary);
+}

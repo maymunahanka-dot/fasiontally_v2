@@ -1,0 +1,122 @@
+/* Light Theme (Default) */
+.subscription-callback {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--primary-hover) 100%
+  );
+  padding: 20px;
+}
+
+/* Dark Theme */
+.subscription-callback[data-theme="dark"] {
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary) 0%,
+    var(--bg-tertiary) 100%
+  );
+}
+
+.callback-container {
+  max-width: 500px;
+  width: 100%;
+}
+
+.callback-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 16px;
+  padding: 48px 32px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.callback-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.callback-icon.loading {
+  background: var(--bg-secondary);
+  color: var(--text-tertiary);
+}
+
+.callback-icon.success {
+  background: var(--success-light);
+  color: var(--success-color);
+}
+
+.callback-icon.failed {
+  background: var(--error-light);
+  color: var(--error-color);
+}
+
+.callback-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.callback-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.callback-message {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.callback-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.callback-actions button {
+  min-width: 140px;
+}
+
+@media (max-width: 640px) {
+  .callback-content {
+    padding: 32px 24px;
+  }
+
+  .callback-title {
+    font-size: 24px;
+  }
+
+  .callback-actions {
+    flex-direction: column;
+  }
+
+  .callback-actions button {
+    width: 100%;
+  }
+}

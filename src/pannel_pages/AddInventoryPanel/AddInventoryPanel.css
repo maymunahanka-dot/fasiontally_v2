@@ -1,0 +1,177 @@
+/* Add Inventory Panel Styles */
+.add_inv_panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  overflow-y: auto;
+  transition: background-color 0.3s ease;
+}
+
+/* Header */
+.add_inv_header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.add_inv_close_btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 1.5rem;
+}
+
+.add_inv_close_btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.add_inv_title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  text-align: end;
+  flex: 1;
+  transition: color 0.3s ease;
+}
+
+/* Form */
+.add_inv_form {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.add_inv_form_group {
+  display: flex;
+  flex-direction: column;
+}
+
+.add_inv_form_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.add_inv_form_group_half {
+  flex: 1;
+}
+
+/* Submit Button */
+.add_inv_submit_btn {
+  background: var(--text-tertiary);
+  color: var(--text-inverse);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.add_inv_submit_btn:hover {
+  background: var(--text-secondary);
+  transform: translateY(-1px);
+}
+
+.add_inv_submit_btn:disabled {
+  background: var(--border-primary);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .add_inv_header {
+    padding: 1rem 1rem 0.75rem 1rem;
+  }
+
+  .add_inv_close_btn {
+    left: 1rem;
+  }
+
+  .add_inv_title {
+    font-size: 1.125rem;
+  }
+
+  .add_inv_form {
+    padding: 1.5rem 1rem;
+    gap: 1.25rem;
+  }
+
+  .add_inv_form_row {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .add_inv_submit_btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .add_inv_header {
+    padding: 0.875rem 0.875rem 0.625rem 0.875rem;
+  }
+
+  .add_inv_close_btn {
+    left: 0.875rem;
+    padding: 0.375rem;
+  }
+
+  .add_inv_title {
+    font-size: 1rem;
+  }
+
+  .add_inv_form {
+    padding: 1.25rem 0.875rem;
+    gap: 1rem;
+  }
+
+  .add_inv_submit_btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+/* Error Styles */
+.add_inv_error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.add_inv_error p {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Dark theme error styles */
+[data-theme="dark"] .add_inv_error {
+  background-color: rgba(220, 38, 38, 0.1);
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+[data-theme="dark"] .add_inv_error p {
+  color: #fca5a5;
+}

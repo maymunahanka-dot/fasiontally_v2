@@ -1,0 +1,348 @@
+/* Brand Panel Styles */
+.brand_panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  overflow-y: auto;
+  transition: background-color 0.3s ease;
+}
+
+/* Header */
+.brand_header {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  flex-shrink: 0;
+}
+
+.brand_back_btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand_back_btn:hover {
+  color: var(--text-primary);
+}
+
+/* Subtitle */
+.brand_subtitle {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  flex-shrink: 0;
+}
+
+.brand_subtitle p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* Form */
+.brand_form {
+  flex: 1;
+  padding: 0 1.5rem 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Section Labels */
+.brand_section_label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+/* Brand Logo Section */
+.brand_logo_section {
+  margin-bottom: 1rem;
+}
+
+.brand_logo_container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand_logo_display {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  background: var(--success-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease;
+}
+
+.brand_logo_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand_logo_initials {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-inverse);
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.brand_upload_btn {
+  background: none;
+  border: 1px solid var(--border-primary);
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand_upload_btn:hover {
+  background: var(--hover-bg);
+  border-color: var(--border-secondary);
+  color: var(--text-primary);
+}
+
+.brand_logo_input {
+  display: none;
+}
+
+/* Form Groups */
+.brand_form_group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bank Details Section */
+.brand_bank_section {
+  margin-top: 1rem;
+}
+
+.brand_bank_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.brand_link_btn {
+  background: none;
+  border: none;
+  color: var(--success-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand_link_btn:hover {
+  background: var(--success-light);
+}
+
+/* Save Button */
+.brand_save_btn {
+  background: var(--success-color);
+  color: var(--text-inverse);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.brand_save_btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.brand_save_btn:disabled {
+  background: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading State */
+.brand_loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  gap: 1rem;
+  color: var(--text-secondary);
+}
+
+.brand_loading p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Brand Colors Section */
+.brand_colors_section {
+  margin-bottom: 1rem;
+}
+
+.brand_colors_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.brand_color_label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.brand_color_input_container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.brand_color_picker {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  transition: border-color 0.3s ease;
+}
+
+.brand_color_picker:hover {
+  border-color: var(--border-secondary);
+}
+
+.brand_color_input_container .input_container {
+  flex: 1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .brand_header {
+    padding: 1rem 1rem 0 1rem;
+  }
+
+  .brand_subtitle {
+    padding: 0 1rem 1rem 1rem;
+  }
+
+  .brand_form {
+    padding: 0 1rem 1.5rem 1rem;
+    gap: 1.25rem;
+  }
+
+  .brand_logo_container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .brand_logo_display {
+    width: 70px;
+    height: 70px;
+  }
+
+  .brand_logo_initials {
+    font-size: 1.25rem;
+  }
+
+  .brand_upload_btn {
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .brand_save_btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .brand_colors_container {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .brand_color_picker {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand_header {
+    padding: 0.875rem 0.875rem 0 0.875rem;
+  }
+
+  .brand_subtitle {
+    padding: 0 0.875rem 0.875rem 0.875rem;
+  }
+
+  .brand_form {
+    padding: 0 0.875rem 1.25rem 0.875rem;
+    gap: 1rem;
+  }
+
+  .brand_logo_display {
+    width: 60px;
+    height: 60px;
+  }
+
+  .brand_logo_initials {
+    font-size: 1rem;
+  }
+
+  .brand_save_btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .brand_back_btn {
+    font-size: 1rem;
+  }
+
+  .brand_bank_header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .brand_link_btn {
+    align-self: flex-end;
+  }
+}

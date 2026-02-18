@@ -1,0 +1,885 @@
+/* ===== NEW SIGNUP PAGES USING GLOBAL THEME SYSTEM ===== */
+
+.n_s_u_main-signup-con {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
+}
+
+.n_s_u_signup-step-left-sec {
+  flex: 1;
+  background-image: url("../../assets/Image/bg.png");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.n_s_u_signup-step-left-sec-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 450px;
+  z-index: 2;
+}
+
+.n_s_u_signup-step-right-sec {
+  flex: 1.5;
+  background-color: var(--bg-primary);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin-left: -25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+}
+
+.n_s_u_signup-step-right-sec-content {
+  min-width: 350px;
+}
+
+.n_s_u_s-s-logo {
+  height: 200px;
+}
+
+.n_s_u_s-s-logo-text {
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "Baloo 2", sans-serif;
+}
+
+.n_s_u_s-s-step {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 16px;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  transition: color 0.3s ease;
+}
+
+.n_s_u_s-s-title-con {
+  margin-bottom: 40px;
+}
+
+.n_s_u_s-s-title {
+  font-family: poppins, sans-serif;
+  font-style: 28px;
+  margin: 0;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.n_s_u_s-s-subtitle {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.n_s_u_s-s-term {
+  margin-top: 10px;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.n_s_u_s-s-terml-link {
+  font-weight: 900;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.n_s_u_s-s-terml-link:hover {
+  color: var(--primary-hover);
+}
+
+.n_s_u_s-s-already-have-account {
+  font-size: 14px;
+  font-family: sans-serif;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.n_s_u_s-s-link {
+  font-weight: 700;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.n_s_u_s-s-link:hover {
+  color: var(--primary-hover);
+}
+
+.n_s_u_s-s-submitbutton {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* Header with back button and step indicator */
+.n_s_u_s-s-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.n_s_u_s-s-header-l-s {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.n_s_u_s-s-header .n_s_u_s-s-step {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+}
+
+.n_s_u_s-s-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: var(--text-secondary);
+}
+
+.n_s_u_s-s-back-btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.n_s_u_s-s-back-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+/* Inactive button styling */
+.n_s_u_s-s-btn-inactive {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  background-color: var(--bg-tertiary) !important;
+  border-color: var(--border-secondary) !important;
+  color: var(--text-muted) !important;
+}
+
+.n_s_u_s-s-btn-inactive:hover {
+  background-color: var(--bg-tertiary) !important;
+  border-color: var(--border-secondary) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Error message styling */
+.n_s_u_error-message {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-family: inherit;
+  transition: color 0.3s ease;
+}
+
+/* Password strength indicator */
+.n_s_u_password-strength {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.n_s_u_strength-bar {
+  width: 100%;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.n_s_u_strength-fill {
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.n_s_u_strength-weak {
+  background: #e74c3c;
+  width: 33%;
+}
+
+.n_s_u_strength-medium {
+  background: #f39c12;
+  width: 66%;
+}
+
+.n_s_u_strength-strong {
+  background: #27ae60;
+  width: 100%;
+}
+
+.n_s_u_strength-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.n_s_u_strength-weak-text {
+  color: #e74c3c;
+}
+
+.n_s_u_strength-medium-text {
+  color: #f39c12;
+}
+
+.n_s_u_strength-strong-text {
+  color: #27ae60;
+}
+
+/* Google Sign-in Button and Divider Styles */
+.n_s_u_auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.n_s_u_auth-divider::before,
+.n_s_u_auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border-primary);
+  transition: background 0.3s ease;
+}
+
+.n_s_u_auth-divider span {
+  padding: 0 1rem;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Baloo 2", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.n_s_u_google-signup-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  width: 100% !important;
+  padding: 0.875rem 1.5rem !important;
+  border: 2px solid var(--border-primary) !important;
+  border-radius: 8px !important;
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  font-family: "Baloo 2", sans-serif !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  margin-bottom: 1rem !important;
+  box-sizing: border-box !important;
+}
+
+.n_s_u_google-signup-btn:hover {
+  background-color: var(--hover-bg) !important;
+  border-color: var(--border-secondary) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.n_s_u_google-signup-btn:focus {
+  outline: none !important;
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px var(--primary-light) !important;
+}
+
+.n_s_u_google-signup-btn:active {
+  transform: translateY(0) !important;
+  box-shadow: none !important;
+  background-color: var(--active-bg) !important;
+}
+
+.n_s_u_google-signup-btn:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+.n_s_u_google-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.n_s_u_google-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Loading spinner animation */
+.n_s_u_loading-spinner {
+  animation: n_s_u_spin 1s linear infinite;
+  color: var(--primary-color);
+}
+
+@keyframes n_s_u_spin {
+  from {
+    transform: rotate(0deg);
+    stroke-dashoffset: 31.416;
+  }
+  to {
+    transform: rotate(360deg);
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Mobile responsive styles for Google button */
+@media (max-width: 768px) {
+  .n_s_u_google-signup-btn {
+    padding: 0.75rem 1.25rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .n_s_u_google-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .n_s_u_auth-divider {
+    margin: 1.25rem 0;
+  }
+
+  .n_s_u_auth-divider span {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .n_s_u_google-signup-btn {
+    padding: 0.625rem 1rem !important;
+    font-size: 0.9rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .n_s_u_google-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .n_s_u_auth-divider {
+    margin: 1rem 0;
+  }
+
+  .n_s_u_auth-divider span {
+    font-size: 12px;
+    padding: 0 0.75rem;
+  }
+}
+
+/* Logo Upload Drag and Drop Styles */
+.n_s_u_logo-upload-area {
+  border: 2px dashed var(--border-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--bg-card);
+  position: relative;
+  min-height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.n_s_u_logo-upload-area:hover {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+.n_s_u_logo-upload-area.drag-active {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+  transform: scale(1.02);
+}
+
+.n_s_u_logo-upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.n_s_u_upload-icon {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.n_s_u_logo-upload-area:hover .n_s_u_upload-icon {
+  color: var(--primary-color);
+}
+
+.n_s_u_upload-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.n_s_u_upload-main-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.n_s_u_upload-link {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.n_s_u_upload-sub-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Logo Preview Styles */
+.n_s_u_logo-preview-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.n_s_u_logo-preview {
+  max-width: 150px;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  object-fit: contain;
+}
+
+.n_s_u_logo-preview-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.n_s_u_logo-preview-container:hover .n_s_u_logo-preview-overlay {
+  opacity: 1;
+}
+
+.n_s_u_logo-remove-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--error-color);
+  transition: all 0.3s ease;
+}
+
+.n_s_u_logo-remove-btn:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+.n_s_u_logo-change-text {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Logo Upload Overlay (during upload) */
+.n_s_u_logo-upload-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.n_s_u_logo-upload-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: n_s_u_spin 0.8s linear infinite;
+}
+
+.n_s_u_logo-upload-text {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+@keyframes n_s_u_spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile responsive styles for logo upload */
+@media (max-width: 768px) {
+  .n_s_u_logo-upload-area {
+    padding: 1.5rem;
+    min-height: 160px;
+  }
+
+  .n_s_u_upload-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .n_s_u_upload-main-text {
+    font-size: 1rem;
+  }
+
+  .n_s_u_upload-sub-text {
+    font-size: 0.85rem;
+  }
+
+  .n_s_u_logo-preview {
+    max-width: 120px;
+    max-height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .n_s_u_logo-upload-area {
+    padding: 1rem;
+    min-height: 140px;
+  }
+
+  .n_s_u_upload-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .n_s_u_upload-main-text {
+    font-size: 0.95rem;
+  }
+
+  .n_s_u_upload-sub-text {
+    font-size: 0.8rem;
+  }
+
+  .n_s_u_logo-preview {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .n_s_u_logo-remove-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .n_s_u_logo-change-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* ===== MOBILE RESPONSIVE STYLES ===== */
+
+/* Tablet styles (768px and below) */
+@media (max-width: 1008px) {
+  .n_s_u_main-signup-con {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .n_s_u_signup-step-left-sec {
+    flex: none;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .n_s_u_signup-step-left-sec-content {
+    max-width: 300px;
+    gap: 15px;
+  }
+
+  .n_s_u_s-s-logo {
+    height: 80px;
+  }
+
+  .n_s_u_s-s-logo-text {
+    font-size: 24px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .n_s_u_signup-step-right-sec {
+    flex: none;
+    border-radius: 20px 20px 0 0;
+    margin-left: 0;
+    margin-top: -20px;
+    padding: 2rem 1rem;
+    min-height: calc(100vh - 180px);
+    align-items: start;
+  }
+
+  .n_s_u_signup-step-right-sec-content {
+    min-width: auto;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .n_s_u_s-s-header {
+    margin-bottom: 20px;
+  }
+
+  .n_s_u_s-s-title-con {
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .n_s_u_s-s-title {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .n_s_u_s-s-subtitle {
+    font-size: 13px;
+  }
+
+  .n_s_u_s-s-submitbutton {
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  .n_s_u_s-s-term {
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .n_s_u_s-s-already-have-account {
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+/* Mobile styles (480px and below) */
+@media (max-width: 480px) {
+  .n_s_u_main-signup-con {
+    height: auto;
+  }
+
+  .n_s_u_signup-step-left-sec {
+    height: 150px;
+  }
+
+  .n_s_u_signup-step-left-sec-content {
+    max-width: 250px;
+    gap: 10px;
+  }
+
+  .n_s_u_s-s-logo {
+    height: 60px;
+  }
+
+  .n_s_u_s-s-logo-text {
+    font-size: 18px;
+    padding: 0 1rem;
+  }
+
+  .n_s_u_signup-step-right-sec {
+    padding: 1.5rem 1rem;
+    margin-top: -15px;
+  }
+
+  .n_s_u_signup-step-right-sec-content {
+    max-width: 100%;
+  }
+
+  .n_s_u_s-s-header {
+    margin-bottom: 15px;
+  }
+
+  .n_s_u_s-s-step {
+    font-size: 14px;
+  }
+
+  .n_s_u_s-s-title-con {
+    margin-bottom: 20px;
+  }
+
+  .n_s_u_s-s-title {
+    font-size: 20px;
+  }
+
+  .n_s_u_s-s-subtitle {
+    font-size: 12px;
+  }
+
+  .n_s_u_s-s-submitbutton {
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+
+  .n_s_u_s-s-term {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .n_s_u_s-s-already-have-account {
+    font-size: 12px;
+  }
+}
+
+/* Extra small mobile (360px and below) */
+@media (max-width: 360px) {
+  .n_s_u_signup-step-left-sec {
+    height: 120px;
+  }
+
+  .n_s_u_s-s-logo {
+    height: 50px;
+  }
+
+  .n_s_u_s-s-logo-text {
+    font-size: 16px;
+  }
+
+  .n_s_u_signup-step-right-sec {
+    padding: 1rem 0.75rem;
+  }
+
+  .n_s_u_s-s-title {
+    font-size: 18px;
+  }
+
+  .n_s_u_s-s-back-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .n_s_u_main-signup-con {
+    flex-direction: row;
+    height: 100vh;
+  }
+
+  .n_s_u_signup-step-left-sec {
+    flex: 0.8;
+    height: 100vh;
+  }
+
+  .n_s_u_signup-step-right-sec {
+    flex: 1.2;
+    margin-left: -20px;
+    margin-top: 0;
+    border-radius: 20px 0 0 20px;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+
+  .n_s_u_s-s-logo {
+    height: 60px;
+  }
+
+  .n_s_u_s-s-logo-text {
+    font-size: 20px;
+  }
+
+  .n_s_u_s-s-title {
+    font-size: 22px;
+  }
+}
+
+/* Fix for mobile viewport height issues */
+@media (max-width: 768px) {
+  .n_s_u_main-signup-con {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+@media (max-width: 768px) {
+  .n_s_u_main-signup-con {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+/* Selected Plan Indicator */
+.selected-plan-indicator {
+  background: linear-gradient(135deg, #0a4d36 0%, #5fa790 100%);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.selected-plan-text {
+  color: white;
+  font-size: 14px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.selected-plan-text strong {
+  font-weight: 700;
+}

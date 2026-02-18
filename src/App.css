@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap");
+
+/* Global Font Family */
+* {
+  font-family: Arial, sans-serif;
+}
+
+/* Global Scrollbar Styles - Invisible by default, visible on hover */
+* {
+  scrollbar-width: none; /* Firefox - hide scrollbar */
+  scrollbar-color: transparent transparent;
+  font-family: Arial, sans-serif;
+}
+
+/* Webkit browsers - hide scrollbar by default */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Show only scrollbar handle on hover - track remains transparent */
+*:hover {
+  scrollbar-width: thin;
+  scrollbar-color: #16988d transparent;
+}
+
+*:hover::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: #16988d;
+  border-radius: 4px;
+}
+
+*:hover::-webkit-scrollbar-thumb:hover {
+  background: #138a7f;
+}
+
+*:hover::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Thin scrollbar variant for specific elements - also invisible by default */
+.thin-scrollbar {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+/* Show only thin scrollbar handle on hover - track remains transparent */
+.thin-scrollbar:hover {
+  scrollbar-width: thin;
+  scrollbar-color: #16988d transparent;
+}
+
+.thin-scrollbar:hover::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: #16988d;
+  border-radius: 3px;
+}
+
+.thin-scrollbar:hover::-webkit-scrollbar-thumb:hover {
+  background: #138a7f;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}

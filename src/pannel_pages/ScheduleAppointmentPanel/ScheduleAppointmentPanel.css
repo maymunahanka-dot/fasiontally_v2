@@ -1,0 +1,262 @@
+.schedule_appointment_panel {
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+.schedule_panel_header {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background: var(--bg-card);
+  z-index: 10;
+}
+
+.schedule_close_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 16px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.schedule_close_btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.schedule_panel_title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Form */
+.schedule_form {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.schedule_form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.schedule_form_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Reminder Section */
+.schedule_reminder_section {
+  padding: 16px;
+  background: var(--success-light);
+  border: 1px solid var(--success-color);
+  border-radius: 8px;
+}
+
+.schedule_reminder_header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.schedule_reminder_indicator {
+  margin-top: 2px;
+}
+
+.schedule_reminder_dot {
+  width: 8px;
+  height: 8px;
+  background: var(--success-color);
+  border-radius: 50%;
+}
+
+.schedule_reminder_content {
+  flex: 1;
+}
+
+.schedule_reminder_title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.schedule_reminder_description {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Action Buttons */
+.schedule_form_actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.schedule_create_btn {
+  background: var(--primary-color) !important;
+  color: white !important;
+  border: none !important;
+  font-weight: 600 !important;
+}
+
+.schedule_create_btn:hover {
+  background: var(--primary-hover) !important;
+}
+
+.schedule_invoice_btn {
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  font-weight: 500 !important;
+}
+
+.schedule_invoice_btn:hover {
+  background: var(--hover-bg) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .schedule_form_row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .schedule_form {
+    padding: 16px;
+  }
+
+  .schedule_panel_header {
+    padding: 16px 20px;
+  }
+}
+
+/* Scrollbar styling */
+.schedule_appointment_panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.schedule_appointment_panel::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.schedule_appointment_panel::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.schedule_appointment_panel::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+/* Google Calendar Dialog */
+.schedule_calendar_dialog_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.schedule_calendar_dialog {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  max-width: 400px;
+  width: 90%;
+  margin: 20px;
+}
+
+.schedule_calendar_dialog_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.schedule_calendar_dialog_title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-color);
+}
+
+.schedule_calendar_dialog_title h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.schedule_calendar_close_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.schedule_calendar_close_btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.schedule_calendar_dialog_content {
+  padding: 20px 24px;
+}
+
+.schedule_calendar_dialog_content p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.schedule_calendar_dialog_actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px 20px;
+  justify-content: flex-end;
+}
+
+/* Dark theme adjustments */
+.schedule_appointment_panel.dark-theme .schedule_calendar_dialog {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+}
+
+.schedule_appointment_panel.dark-theme .schedule_calendar_dialog_overlay {
+  background: rgba(0, 0, 0, 0.7);
+}

@@ -1,0 +1,208 @@
+/* Add Transaction Panel Styles */
+.add_trans_panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  overflow-y: auto;
+  transition: background-color 0.3s ease;
+}
+
+/* Header */
+.add_trans_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  flex-shrink: 0;
+}
+
+.add_trans_title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.add_trans_close_btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add_trans_close_btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+/* Form */
+.add_trans_form {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.add_trans_form_group {
+  display: flex;
+  flex-direction: column;
+}
+
+.add_trans_form_group_half {
+  flex: 1;
+}
+
+.add_trans_form_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.add_trans_label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
+}
+
+/* Transaction Type Buttons */
+.add_trans_type_buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.add_trans_type_btn {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-primary);
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.add_trans_type_btn:hover {
+  border-color: var(--border-secondary);
+  background: var(--hover-bg);
+}
+
+.add_trans_type_btn.active.income {
+  border-color: var(--success-color);
+  background: var(--success-light);
+  color: var(--success-color);
+}
+
+.add_trans_type_btn.active.expense {
+  border-color: var(--error-color);
+  background: var(--error-light);
+  color: var(--error-color);
+}
+
+.add_trans_type_btn svg {
+  flex-shrink: 0;
+}
+
+/* Submit Button */
+.add_trans_submit_btn {
+  background: var(--text-tertiary);
+  color: var(--text-inverse);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.add_trans_submit_btn:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.add_trans_submit_btn:disabled {
+  background: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .add_trans_header {
+    padding: 1rem 1rem 0.75rem 1rem;
+  }
+
+  .add_trans_title {
+    font-size: 1.125rem;
+  }
+
+  .add_trans_form {
+    padding: 1.5rem 1rem;
+    gap: 1.25rem;
+  }
+
+  .add_trans_form_row {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .add_trans_type_buttons {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .add_trans_type_btn {
+    padding: 1.25rem 1rem;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .add_trans_submit_btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .add_trans_header {
+    padding: 0.875rem 0.875rem 0.625rem 0.875rem;
+  }
+
+  .add_trans_title {
+    font-size: 1rem;
+  }
+
+  .add_trans_form {
+    padding: 1.25rem 0.875rem;
+    gap: 1rem;
+  }
+
+  .add_trans_type_btn {
+    padding: 1rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .add_trans_submit_btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}

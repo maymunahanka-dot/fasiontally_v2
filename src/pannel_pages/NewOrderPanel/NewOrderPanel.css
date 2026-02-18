@@ -1,0 +1,723 @@
+/* New Order Panel Styles */
+.new_oda_panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-card);
+  transition: background-color 0.3s ease;
+}
+
+/* Header */
+.new_oda_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background-color: var(--bg-card);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.new_oda_back_btn,
+.new_oda_close_btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new_oda_back_btn:hover,
+.new_oda_close_btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.new_oda_title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1;
+  text-align: end;
+  transition: color 0.3s ease;
+}
+
+/* Form */
+.new_oda_form {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px);
+}
+
+.new_oda_form_content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem 1.5rem;
+}
+
+.new_oda_form_group {
+  margin-bottom: 1.5rem;
+}
+
+.new_oda_form_row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.new_oda_form_group_half {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* Client Selection Row */
+.new_oda_client_label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.new_oda_client_row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.new_oda_client_select {
+  flex: 1;
+}
+
+.new_oda_existing_btn {
+  background: none;
+  border: 1px solid var(--border-primary);
+  color: var(--text-secondary);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  height: fit-content;
+  margin-top: 0;
+}
+
+.new_oda_existing_btn:hover {
+  background-color: var(--hover-bg);
+  border-color: var(--border-secondary);
+  color: var(--text-primary);
+}
+
+.new_oda_existing_btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Section Titles */
+.new_oda_section_title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-primary);
+  transition: all 0.3s ease;
+}
+
+/* Client Details Section */
+.new_oda_client_details {
+  background-color: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-primary);
+  transition: all 0.3s ease;
+}
+
+/* Date Container */
+.new_oda_date_container {
+  position: relative;
+}
+
+.new_oda_date_container ._in_com_input_field {
+  padding-right: 3rem;
+}
+
+.new_oda_date_container svg {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+/* Pricing Section */
+.new_oda_pricing_section {
+  background-color: rgba(251, 191, 36, 0.1);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  transition: all 0.3s ease;
+}
+
+.new_oda_pricing_section .new_oda_section_title {
+  color: var(--warning-color);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.new_oda_additional_items {
+  margin: 1.5rem 0;
+}
+
+.new_oda_additional_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.new_oda_additional_title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.new_oda_add_item_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.new_oda_add_item_btn:hover {
+  color: var(--primary-hover);
+}
+
+.new_oda_add_icon {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.new_oda_items_list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.new_oda_item_row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.new_oda_item_inputs {
+  flex: 1;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.new_oda_item_inputs > div {
+  flex: 1;
+}
+
+.new_oda_remove_item_btn {
+  background-color: rgba(220, 38, 38, 0.1);
+  border: none;
+  color: var(--error-color);
+  cursor: pointer;
+  padding: 0.75rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+.new_oda_remove_item_btn:hover {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+/* Totals */
+.new_oda_totals {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--warning-color);
+  transition: border-color 0.3s ease;
+}
+
+.new_oda_total_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.new_oda_total_label {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.new_oda_total_value {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.new_oda_balance_row {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--warning-color);
+  background-color: rgba(220, 38, 38, 0.05);
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-radius: 0 0 8px 8px;
+  transition: all 0.3s ease;
+}
+
+.new_oda_balance_row .new_oda_total_label {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.new_oda_balance_value {
+  font-size: 1.1rem;
+  color: var(--error-color);
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+/* Form Footer */
+.new_oda_form_footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-secondary);
+  background-color: var(--bg-card);
+  position: sticky;
+  bottom: 0;
+  transition: all 0.3s ease;
+}
+
+.new_oda_submit_btn {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--text-inverse);
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.new_oda_submit_btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.new_oda_submit_btn:active {
+  transform: translateY(0);
+}
+
+/* Custom Input Styling for this panel */
+.new_oda_form_content ._in_com_input_wrapper {
+  margin-bottom: 0;
+}
+
+.new_oda_form_content ._in_com_input_label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.new_oda_form_content ._in_com_input_field {
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+}
+
+.new_oda_form_content ._in_com_input_field::placeholder {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
+.new_oda_form_content ._in_com_textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.new_oda_form_content ._in_com_select {
+  font-size: 0.95rem;
+}
+
+.new_oda_form_content ._in_com_error_message {
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* Scrollbar Styling */
+.new_oda_form_content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.new_oda_form_content::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 3px;
+}
+
+.new_oda_form_content::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.new_oda_form_content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .new_oda_panel {
+    width: 100vw;
+    right: -100vw;
+  }
+
+  .new_oda_header {
+    padding: 1rem;
+  }
+
+  .new_oda_title {
+    font-size: 1.125rem;
+  }
+
+  .new_oda_form_content {
+    padding: 1.5rem 1rem;
+  }
+
+  .new_oda_form_row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .new_oda_form_group_half {
+    margin-bottom: 1.5rem;
+  }
+
+  .new_oda_client_row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .new_oda_existing_btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .new_oda_form_footer {
+    padding: 1rem;
+  }
+
+  .new_oda_submit_btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .new_oda_client_details,
+  .new_oda_pricing_section {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .new_oda_header {
+    padding: 0.75rem;
+  }
+
+  .new_oda_title {
+    font-size: 1rem;
+  }
+
+  .new_oda_form_content {
+    padding: 1rem 0.75rem;
+  }
+
+  .new_oda_form_group {
+    margin-bottom: 1.25rem;
+  }
+
+  .new_oda_form_footer {
+    padding: 0.75rem;
+  }
+
+  .new_oda_submit_btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .new_oda_form_content ._in_com_input_field {
+    font-size: 0.9rem;
+    padding: 0.625rem 1rem;
+  }
+
+  .new_oda_form_content ._in_com_input_label {
+    font-size: 0.85rem;
+  }
+
+  .new_oda_client_details,
+  .new_oda_pricing_section {
+    padding: 0.75rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+  .new_oda_header {
+    padding: 0.5rem;
+  }
+
+  .new_oda_back_btn,
+  .new_oda_close_btn {
+    padding: 0.375rem;
+  }
+
+  .new_oda_title {
+    font-size: 0.95rem;
+  }
+
+  .new_oda_form_content {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .new_oda_form_footer {
+    padding: 0.5rem;
+  }
+
+  .new_oda_submit_btn {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.85rem;
+  }
+
+  .new_oda_client_details,
+  .new_oda_pricing_section {
+    padding: 0.5rem;
+  }
+}
+
+/* Focus states for better accessibility */
+.new_oda_back_btn:focus,
+.new_oda_close_btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.new_oda_submit_btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Loading state for submit button */
+.new_oda_submit_btn:disabled {
+  background-color: var(--text-tertiary);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.new_oda_submit_btn:disabled:hover {
+  background-color: var(--text-tertiary);
+  transform: none;
+}
+
+/* Animation for form validation errors */
+.new_oda_form_group.error {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* Success state animation */
+.new_oda_submit_btn.success {
+  background-color: var(--success-color);
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Measurements Grid */
+.new_oda_measurements_grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.new_oda_measurement_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Dynamic Measurements */
+.new_oda_measurements_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.new_oda_add_measurement_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.new_oda_add_measurement_btn:hover {
+  color: var(--primary-hover);
+}
+
+.new_oda_add_measurement_btn .new_oda_add_icon {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.new_oda_measurements_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.new_oda_measurement_item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.new_oda_measurement_inputs {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+}
+
+.new_oda_measurement_inputs > div {
+  flex: 1;
+}
+
+.new_oda_remove_measurement_btn {
+  background-color: rgba(220, 38, 38, 0.1);
+  border: none;
+  color: var(--error-color);
+  cursor: pointer;
+  padding: 0.75rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+.new_oda_remove_measurement_btn:hover {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+.new_oda_no_items {
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-style: italic;
+  border: 1px dashed var(--border-primary);
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+}
+
+.new_oda_no_items p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .new_oda_measurement_row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .new_oda_measurements_header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .new_oda_add_measurement_btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .new_oda_measurement_inputs {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

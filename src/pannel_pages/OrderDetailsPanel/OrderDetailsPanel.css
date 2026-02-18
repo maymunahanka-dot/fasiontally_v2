@@ -1,0 +1,710 @@
+.odp_order-details-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+.odp_order-details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.odp_close-btn,
+.odp_edit-btn,
+.odp_delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.odp_close-btn:hover,
+.odp_edit-btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.odp_delete-btn:hover {
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--error-color);
+}
+
+.odp_edit-btn {
+  color: var(--primary-color) !important;
+}
+
+.odp_edit-btn:hover {
+  background: var(--primary-light) !important;
+  color: var(--primary-hover) !important;
+}
+
+.odp_delete-btn {
+  color: var(--error-color) !important;
+}
+
+.odp_header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Focus states for accessibility */
+.odp_close-btn:focus,
+.odp_edit-btn:focus,
+.odp_delete-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.odp_header-content {
+  flex: 1;
+  text-align: center;
+}
+
+.odp_panel-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 2px 0;
+}
+
+.odp_order-number {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Content */
+.odp_order-details-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Sections */
+.odp_section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.odp_section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+/* Order Status */
+.odp_status-container {
+  display: flex;
+  align-items: center;
+}
+
+.odp_status-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.odp_status-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.odp_updating-text {
+  margin-left: 8px;
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.odp_status-pending {
+  background: var(--warning-light);
+  color: var(--warning-color);
+  border-color: var(--warning-color);
+}
+
+.odp_status-in-progress {
+  background: var(--info-light);
+  color: var(--info-color);
+  border-color: var(--info-color);
+}
+
+.odp_status-completed {
+  background: var(--success-light);
+  color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.odp_status-cancelled {
+  background: var(--error-light);
+  color: var(--error-color);
+  border-color: var(--error-color);
+}
+
+/* Client Information */
+.odp_client-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+}
+
+.odp_client-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.odp_client-details {
+  flex: 1;
+}
+
+.odp_client-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px 0;
+}
+
+.odp_contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.odp_contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.odp_contact-item svg {
+  color: var(--primary-color);
+  width: 14px;
+  height: 14px;
+}
+
+/* Order Details Grid Layout */
+.odp_order-details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.odp_detail-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.odp_detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.odp_detail-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.odp_detail-icon {
+  color: var(--primary-color);
+  width: 16px;
+  height: 16px;
+}
+
+.odp_detail-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.odp_detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-left: 22px;
+}
+
+.odp_detail-main {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.odp_detail-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Measurements Layout */
+.odp_measurements-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.odp_measurements-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.odp_measurement-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 10px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.odp_measurement-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.odp_measurement-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.odp_no-measurements {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-style: italic;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.odp_no-measurements p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Pricing */
+.odp_pricing-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+}
+
+.odp_pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.odp_pricing-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.odp_pricing-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.odp_pricing-row.odp_total {
+  border-top: 1px solid var(--border-primary);
+  border-bottom: 1px solid var(--border-primary);
+  margin: 6px 0;
+  padding: 10px 0;
+  background-color: rgba(var(--primary-color-rgb), 0.05);
+  margin-left: -14px;
+  margin-right: -14px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.odp_total .odp_pricing-label,
+.odp_total .odp_pricing-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.odp_deposit-amount {
+  color: var(--success-color) !important;
+}
+
+.odp_balance-amount {
+  color: var(--warning-color) !important;
+}
+
+/* Additional Items */
+.odp_additional-items-section {
+  margin: 8px 0;
+  padding: 12px;
+  background-color: rgba(var(--primary-color-rgb), 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(var(--primary-color-rgb), 0.1);
+}
+
+.odp_additional-items-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.odp_additional-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(var(--border-primary-rgb), 0.5);
+}
+
+.odp_additional-item:last-child {
+  border-bottom: none;
+}
+
+.odp_additional-item-name {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.odp_additional-item-price {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Timeline */
+.odp_timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.odp_update-timeline-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.odp_update-timeline-btn:hover {
+  background: var(--primary-light);
+}
+
+.odp_timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 8px;
+}
+
+.odp_timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+}
+
+.odp_timeline-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 32px;
+  width: 2px;
+  height: calc(100% + 4px);
+  background: var(--border-primary);
+}
+
+.odp_timeline-item.odp_completed::after {
+  background: var(--success-color);
+}
+
+.odp_timeline-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.odp_completed .odp_timeline-icon {
+  background: var(--success-color);
+}
+
+.odp_pending .odp_timeline-icon {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-primary);
+}
+
+.odp_check-icon {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.odp_pending-icon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+}
+
+.odp_timeline-content {
+  flex: 1;
+}
+
+.odp_timeline-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.odp_timeline-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.odp_completed .odp_timeline-title {
+  color: var(--success-color);
+}
+
+/* Actions */
+.odp_actions {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-primary);
+  display: flex;
+  gap: 10px;
+}
+
+.odp_contact-btn {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-primary) !important;
+  color: var(--text-primary) !important;
+  font-weight: 500;
+  height: 42px;
+  flex: 1;
+  font-size: 14px !important;
+}
+
+.odp_contact-btn:hover {
+  background: var(--hover-bg) !important;
+  border-color: var(--border-primary) !important;
+}
+
+.odp_update-btn {
+  height: 42px;
+  flex: 1;
+  font-size: 14px !important;
+}
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--text-inverse) !important;
+  font-weight: 600;
+  height: 48px;
+  flex: 2;
+}
+
+.odp_update-btn:hover {
+  background: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+/* Focus states for accessibility */
+.odp_close-btn:focus,
+.odp_edit-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.odp_contact-btn:focus,
+.odp_update-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .odp_order-details-header {
+    padding: 14px 16px;
+  }
+
+  .odp_order-details-content {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .odp_panel-title {
+    font-size: 16px;
+  }
+
+  .odp_header-actions {
+    gap: 2px;
+  }
+
+  .odp_close-btn,
+  .odp_edit-btn,
+  .odp_delete-btn {
+    padding: 6px;
+  }
+
+  .odp_measurements-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .odp_actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .odp_contact-btn,
+  .odp_update-btn {
+    flex: 1;
+    height: 40px;
+  }
+
+  .odp_client-info {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .odp_client-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .odp_detail-item {
+    padding: 10px;
+  }
+}
+
+/* Scrollbar Styling */
+.odp_order-details-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.odp_order-details-content::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.odp_order-details-content::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.odp_order-details-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Animation for smooth theme transitions */
+.odp_order-details-panel *,
+.odp_order-details-panel *::before,
+.odp_order-details-panel *::after {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+/* Status updating indicator */
+.odp_updating-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: 8px;
+  font-style: italic;
+}
+
+.odp_status-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.odp_status-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+/* Loading state */
+.odp_loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: var(--text-muted);
+}
+/* No measurements state */
+.odp_no-measurements {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-muted);
+  font-style: italic;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px dashed var(--border-primary);
+}

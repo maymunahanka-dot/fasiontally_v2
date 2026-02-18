@@ -1,0 +1,1042 @@
+.sub_panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-card);
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.sub_header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px 24px 20px 24px;
+  border-bottom: 1px solid var(--border-primary);
+  transition: border-color 0.3s ease;
+}
+
+.sub_back_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  margin-top: 2px;
+}
+
+.sub_back_btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.sub_header_content {
+  flex: 1;
+}
+
+.sub_title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.sub_subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.sub_content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.sub_section_title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 24px 0;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.sub_plans_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Plan Cards */
+.sub_plan_card {
+  border: 2px solid var(--border-primary);
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--bg-card);
+}
+
+.sub_plan_card:hover {
+  border-color: var(--border-secondary);
+  box-shadow: var(--shadow-md);
+}
+
+.sub_plan_card.current {
+  background: var(--primary-light);
+  border-color: var(--primary-color);
+}
+
+.sub_plan_card.custom {
+  background: var(--primary-color);
+  color: var(--text-inverse);
+  border-color: var(--primary-color);
+}
+
+.sub_plan_card.custom .sub_plan_name,
+.sub_plan_card.custom .sub_plan_description,
+.sub_plan_card.custom .sub_feature_text {
+  color: var(--text-inverse);
+}
+
+.sub_plan_card.custom .sub_feature_icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-inverse);
+}
+
+/* Plan Header */
+.sub_plan_header {
+  margin-bottom: 20px;
+}
+
+.sub_plan_title_section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.sub_plan_name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.sub_plan_badge {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-inverse);
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.sub_plan_pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.sub_plan_price {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.sub_plan_period {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.sub_plan_description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+/* Plan Features */
+.sub_plan_features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.sub_plan_feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sub_feature_icon {
+  width: 20px;
+  height: 20px;
+  background: var(--success-color);
+  color: var(--text-inverse);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.sub_feature_text {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+/* Plan Buttons */
+.sub_plan_button_container {
+  margin-top: auto;
+}
+
+.sub_plan_button {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sub_plan_button:not(:disabled) {
+  background: var(--primary-color);
+  color: var(--text-inverse);
+}
+
+.sub_plan_button:not(:disabled):hover {
+  background: var(--primary-hover);
+}
+
+.sub_plan_button:disabled {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.sub_plan_button.custom {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-inverse);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sub_plan_button.custom:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Scrollbar Styling */
+.sub_content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sub_content::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 3px;
+}
+
+.sub_content::-webkit-scrollbar-thumb {
+  background: var(--border-secondary);
+  border-radius: 3px;
+}
+
+.sub_content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .sub_content {
+    padding: 16px;
+  }
+
+  .sub_header {
+    padding: 16px 16px 12px 16px;
+  }
+
+  .sub_plan_card {
+    padding: 20px;
+  }
+
+  .sub_plan_name {
+    font-size: 18px;
+  }
+
+  .sub_plan_price {
+    font-size: 24px;
+  }
+
+  .sub_plan_period {
+    font-size: 14px;
+  }
+}
+
+/* Animation for plan selection */
+.sub_plan_card.selected {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(22, 152, 141, 0.15);
+}
+
+/* Special styling for popular badge */
+.sub_plan_badge[style*="#f59e0b"] {
+  background: var(--warning-color);
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+/* Current Subscription Status */
+.current_subscription_status {
+  background: linear-gradient(135deg, #16988d 0%, #0e6962 100%);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 32px;
+  color: white;
+}
+
+.status_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.status_header_left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crown_icon {
+  color: #fbbf24;
+}
+
+.status_header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.cancel_subscription_icon {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cancel_subscription_icon:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.3);
+  transform: scale(1.05);
+}
+
+.cancel_subscription_icon:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.status_details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.plan_info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.current_plan_name {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+.trial_badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.expiry_date {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  margin: 0;
+}
+
+.cancel_subscription_btn {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  margin-top: 8px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cancel_subscription_btn:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+.cancel_subscription_btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Free Trial Banner */
+.free_trial_banner {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 32px;
+  color: white;
+  text-align: center;
+}
+
+.trial_content h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.trial_content p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+/* Enhanced Plan Cards */
+.sub_plan_card.popular {
+  border-color: #55e2d6;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    rgba(59, 130, 246, 0.02) 100%
+  );
+  position: relative;
+  transform: scale(1.02);
+}
+
+.sub_plan_card.popular::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #0a504a, #16988d);
+  border-radius: 18px;
+  z-index: -1;
+}
+
+.sub_plan_card.pro {
+  border-color: #f59e0b;
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.05) 0%,
+    rgba(245, 158, 11, 0.02) 100%
+  );
+}
+
+.sub_plan_card.current {
+  background: linear-gradient(
+    135deg,
+    rgba(107, 114, 128, 0.1) 0%,
+    rgba(107, 114, 128, 0.05) 100%
+  );
+  border-color: #6b7280;
+}
+
+.sub_plan_card.selected {
+  border-color: #10b981;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.1) 0%,
+    rgba(16, 185, 129, 0.05) 100%
+  );
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.2);
+}
+
+/* Subscription Info */
+.subscription_info {
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-primary);
+}
+
+.subscription_info h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.subscription_info ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.subscription_info li {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.subscription_info li:last-child {
+  margin-bottom: 0;
+}
+
+/* Loading state */
+.sub_plan_button:disabled {
+  opacity: 0.6;
+}
+
+/* Responsive updates */
+@media (max-width: 480px) {
+  .current_subscription_status,
+  .free_trial_banner {
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .plan_info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .current_plan_name {
+    font-size: 18px;
+  }
+
+  .trial_content h3 {
+    font-size: 18px;
+  }
+
+  .subscription_info {
+    margin-top: 24px;
+    padding: 16px;
+  }
+}
+/* Billing Cycle Toggle */
+.billing_cycle_toggle {
+  display: flex;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-primary);
+}
+
+.billing_cycle_toggle button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-secondary);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.billing_cycle_toggle button.active {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.billing_cycle_toggle button:hover:not(.active) {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.savings_badge {
+  background: #10b981;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Plan Savings Display */
+.plan_savings {
+  background: #10b981;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Enhanced Plan Pricing */
+.sub_plan_pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+/* Payment Button Enhancements */
+.sub_plan_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+}
+
+.sub_plan_button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Payment Processing State */
+.sub_plan_button svg {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced Current Subscription Status */
+.current_subscription_status {
+  background: linear-gradient(135deg, #16988d 0%, #0e6962 100%);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 32px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.current_subscription_status::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Responsive Billing Toggle */
+@media (max-width: 480px) {
+  .billing_cycle_toggle {
+    margin-bottom: 20px;
+  }
+
+  .billing_cycle_toggle button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .savings_badge {
+    font-size: 9px;
+    padding: 1px 4px;
+  }
+
+  .plan_savings {
+    font-size: 10px;
+    padding: 1px 6px;
+    margin-left: 4px;
+  }
+}
+/* Cancellation Modal Styles */
+.cancel_modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.cancel_modal {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-primary);
+}
+
+.cancel_modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 0;
+  border-bottom: 1px solid var(--border-primary);
+  margin-bottom: 24px;
+}
+
+.cancel_modal_header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cancel_modal_close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.cancel_modal_close:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.cancel_modal_content {
+  padding: 0 24px 24px;
+}
+
+.cancel_warning {
+  background: var(--warning-bg, #fef3cd);
+  border: 1px solid var(--warning-border, #f59e0b);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  color: var(--warning-text, #92400e);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cancel_form {
+  margin-bottom: 24px;
+}
+
+.cancel_form_group {
+  margin-bottom: 20px;
+}
+
+.cancel_form_group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.cancel_select,
+.cancel_textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border-primary);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  box-sizing: border-box;
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.cancel_select:focus,
+.cancel_textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-color-alpha);
+}
+
+.cancel_textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.cancel_textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.cancel_modal_actions {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cancel_confirm_btn {
+  background: #dc2626 !important;
+  border-color: #dc2626 !important;
+  color: white !important;
+  height: 60px;
+}
+
+.cancel_confirm_btnn {
+  width: 200px;
+}
+
+.cancel_confirm_btn:hover:not(:disabled) {
+  background: #b91c1c !important;
+  border-color: #b91c1c !important;
+}
+
+.cancel_confirm_btn:disabled {
+  background: var(--text-disabled) !important;
+  border-color: var(--text-disabled) !important;
+  cursor: not-allowed;
+}
+
+.cancel_disclaimer {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .cancel_modal_overlay {
+    padding: 10px;
+  }
+
+  .cancel_modal {
+    max-height: 95vh;
+  }
+
+  .cancel_modal_header {
+    padding: 20px 20px 0;
+  }
+
+  .cancel_modal_content {
+    padding: 0 20px 20px;
+  }
+
+  .cancel_modal_actions {
+    flex-direction: column;
+  }
+
+  .cancel_modal_actions button {
+    width: 100%;
+  }
+}
+
+/* Dark theme specific overrides for cancel modal */
+[data-theme="dark"] .cancel_warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+}
+
+/* Loading Overlay Styles */
+.sub_loading_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(2px);
+}
+
+.sub_loading_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px;
+  text-align: center;
+}
+
+.sub_loading_spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-primary);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: sub_spin 1s linear infinite;
+}
+
+.sub_loading_text {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+  animation: sub_pulse 2s ease-in-out infinite;
+}
+
+@keyframes sub_spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sub_pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Theme-aware loading styles */
+[data-theme="dark"] .sub_loading_overlay {
+  background: var(--bg-primary);
+}
+
+[data-theme="light"] .sub_loading_overlay {
+  background: var(--bg-primary);
+}
+
+/* Responsive loading styles */
+@media (max-width: 480px) {
+  .sub_loading_content {
+    padding: 24px;
+  }
+
+  .sub_loading_spinner {
+    width: 32px;
+    height: 32px;
+    border-width: 2px;
+  }
+
+  .sub_loading_text {
+    font-size: 14px;
+  }
+}
+/* Progress Bar Styles */
+.subscription_progress {
+  margin: 16px 0;
+}
+
+.progress_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.progress_label {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.progress_days {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.progress_bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress_fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Trial progress bar color */
+.current_subscription_status
+  .trial_badge
+  + .subscription_progress
+  .progress_fill {
+  background: linear-gradient(90deg, #16988d 0%, #0e6962 100%);
+}
+
+/* Expired progress bar color */
+.progress_fill[style*="width: 100%"] {
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+}

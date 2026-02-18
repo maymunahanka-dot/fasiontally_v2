@@ -1,0 +1,363 @@
+/* Create Invoice Panel Styles */
+.create_invoice_panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  overflow-y: auto;
+  transition: background-color 0.3s ease;
+}
+
+/* Header */
+.create_invoice_header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.create_invoice_close_btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 1.5rem;
+}
+
+.create_invoice_close_btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.create_invoice_title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  text-align: end;
+  flex: 1;
+  transition: color 0.3s ease;
+}
+
+/* Form */
+.create_invoice_form {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.create_invoice_section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.create_invoice_section_title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.create_invoice_form_group {
+  display: flex;
+  flex-direction: column;
+}
+
+.create_invoice_form_group_half {
+  flex: 1;
+}
+
+.create_invoice_form_group_third {
+  flex: 1;
+}
+
+/* Date Section */
+.create_invoice_date_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Items Section */
+.create_invoice_items_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.create_invoice_add_item_btn {
+  background: none;
+  border: 1px solid var(--success-color);
+  color: var(--success-color);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.create_invoice_add_item_btn:hover {
+  background: var(--success-color);
+  color: var(--text-inverse);
+}
+
+.create_invoice_item {
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.create_invoice_item_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.create_invoice_item_total_label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.create_invoice_item_total {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-primary);
+  transition: all 0.3s ease;
+}
+
+.create_invoice_remove_item_btn {
+  background: none;
+  border: none;
+  color: var(--error-color);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.create_invoice_remove_item_btn:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Summary Section */
+.create_invoice_summary {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.create_invoice_summary_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.create_invoice_summary_total {
+  border-top: 1px solid var(--border-primary);
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.create_invoice_summary_label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.create_invoice_summary_value {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.create_invoice_total_amount {
+  font-size: 1.125rem;
+  color: var(--success-color);
+  font-weight: 700;
+}
+
+/* Submit Button */
+.create_invoice_submit_btn {
+  background: var(--text-tertiary);
+  color: var(--text-inverse);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.create_invoice_submit_btn:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.create_invoice_submit_btn:disabled {
+  background: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Error Message */
+.create_invoice_error_message {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Stock Information Display */
+.create_invoice_stock_info {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border-left: 4px solid var(--success-color);
+  transition: all 0.3s ease;
+}
+
+.create_invoice_stock_text {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.create_invoice_stock_warning {
+  font-size: 0.875rem;
+  color: var(--error-color);
+  margin: 0.25rem 0 0 0;
+  font-weight: 600;
+}
+
+.create_invoice_stock_info:has(.create_invoice_stock_warning) {
+  border-left-color: var(--error-color);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+/* Quantity Helper Text */
+.create_invoice_quantity_helper {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  transition: color 0.3s ease;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .create_invoice_header {
+    padding: 1rem 1rem 0.75rem 1rem;
+  }
+
+  .create_invoice_close_btn {
+    left: 1rem;
+  }
+
+  .create_invoice_title {
+    font-size: 1.125rem;
+  }
+
+  .create_invoice_form {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .create_invoice_date_section {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .create_invoice_item_row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .create_invoice_items_header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .create_invoice_add_item_btn {
+    align-self: flex-end;
+  }
+
+  .create_invoice_submit_btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .create_invoice_header {
+    padding: 0.875rem 0.875rem 0.625rem 0.875rem;
+  }
+
+  .create_invoice_close_btn {
+    left: 0.875rem;
+    padding: 0.375rem;
+  }
+
+  .create_invoice_title {
+    font-size: 1rem;
+  }
+
+  .create_invoice_form {
+    padding: 1.25rem 0.875rem;
+    gap: 1.25rem;
+  }
+
+  .create_invoice_item {
+    padding: 1rem;
+  }
+
+  .create_invoice_summary {
+    padding: 1rem;
+  }
+
+  .create_invoice_submit_btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}

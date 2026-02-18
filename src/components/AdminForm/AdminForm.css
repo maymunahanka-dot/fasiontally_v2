@@ -1,0 +1,344 @@
+.admin-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.admin-form-modal {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+}
+
+.admin-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 0 24px;
+  margin-bottom: 8px;
+}
+
+.admin-form-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.admin-form-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-color);
+}
+
+.admin-form-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.admin-form-close:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.admin-form-description {
+  padding: 0 24px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 24px;
+  transition: color 0.3s ease;
+}
+
+.admin-form {
+  padding: 0 24px 24px 24px;
+}
+
+.admin-form-section {
+  margin-bottom: 32px;
+}
+
+.admin-form-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+  transition: color 0.3s ease;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.admin-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+/* Permissions Section */
+.admin-form-permissions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.admin-form-permission-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-form-action-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  height: auto;
+}
+
+.admin-form-permissions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.admin-form-permission-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.admin-form-permission-item:hover {
+  border-color: var(--primary-color);
+  background: var(--bg-hover);
+}
+
+.admin-form-permission-item.locked {
+  background: var(--bg-muted);
+  opacity: 0.6;
+}
+
+.admin-form-permission-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-form-permission-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.admin-form-permission-icon.locked {
+  color: var(--text-muted);
+}
+
+.admin-form-permission-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.admin-form-permission-item.locked .admin-form-permission-label {
+  color: var(--text-muted);
+}
+
+/* Custom Switch */
+.admin-form-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.admin-form-checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.admin-form-slider {
+  position: absolute;
+  cursor: pointer !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: all 0.3s ease;
+  border-radius: 24px;
+  display: block;
+  z-index: 10;
+}
+
+.admin-form-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form-checkbox:checked + .admin-form-slider {
+  background-color: var(--primary-color);
+}
+
+.admin-form-checkbox:checked + .admin-form-slider:before {
+  transform: translateX(20px);
+}
+
+.admin-form-checkbox:disabled + .admin-form-slider {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: #ddd;
+}
+
+.admin-form-checkbox:disabled + .admin-form-slider:before {
+  background-color: #999;
+}
+
+.admin-form-slider:hover:not(
+    .admin-form-checkbox:disabled + .admin-form-slider
+  ) {
+  box-shadow: 0 0 0 2px rgba(22, 152, 141, 0.2);
+  background-color: #bbb;
+}
+
+.admin-form-checkbox:checked + .admin-form-slider:hover {
+  background-color: var(--primary-hover);
+}
+
+.admin-form-slider:active {
+  transform: scale(0.98);
+}
+
+.admin-form-locked-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.admin-form-note-text {
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+.admin-form-lock-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.admin-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-form-overlay {
+    padding: 16px;
+  }
+
+  .admin-form-modal {
+    max-width: 100%;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form-permissions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form-permissions-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .admin-form-header {
+    padding: 20px 20px 0 20px;
+  }
+
+  .admin-form-description {
+    padding: 0 20px;
+  }
+
+  .admin-form {
+    padding: 0 20px 20px 20px;
+  }
+
+  .admin-form-footer {
+    flex-direction: column;
+  }
+}
+
+/* Dark theme adjustments */
+.dark .admin-form-slider {
+  background-color: var(--border-secondary);
+}
+
+.dark .admin-form-slider:before {
+  background-color: var(--bg-primary);
+}
+
+.dark .admin-form-checkbox:checked + .admin-form-slider {
+  background-color: var(--primary-color);
+}
+
+.dark .admin-form-checkbox:checked + .admin-form-slider:before {
+  background-color: white;
+}

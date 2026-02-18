@@ -1,0 +1,203 @@
+/* Orders Tab Styles */
+.client_details_orders {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 3rem;
+}
+
+.client_orders_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.client_orders_count {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.client_orders_empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.client_orders_new_btn {
+  background: var(--primary-color);
+  color: var(--text-inverse);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.client_orders_new_btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.client_orders_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.client_order_item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.client_order_item:hover {
+  border-color: var(--border-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.client_order_icon {
+  width: 48px;
+  height: 48px;
+  background: var(--primary-light);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.client_order_details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.client_order_main_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.client_order_title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.client_order_amount {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.client_order_sub_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.client_order_date {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  transition: color 0.3s ease;
+}
+
+.client_order_status_badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.client_order_status_badge.completed {
+  background: rgba(22, 163, 74, 0.1);
+  color: var(--success-color);
+}
+
+/* Mobile Responsive for Orders */
+@media (max-width: 768px) {
+  .client_orders_header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .client_orders_count {
+    font-size: 1.125rem;
+  }
+
+  .client_orders_new_btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1.5rem;
+  }
+
+  .client_order_item {
+    padding: 1.25rem;
+  }
+
+  .client_order_main_info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .client_order_sub_info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .client_orders_count {
+    font-size: 1rem;
+  }
+
+  .client_orders_new_btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  .client_order_item {
+    padding: 1rem;
+  }
+
+  .client_order_icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .client_order_title {
+    font-size: 1rem;
+  }
+
+  .client_order_amount {
+    font-size: 1rem;
+  }
+
+  .client_order_date {
+    font-size: 0.85rem;
+  }
+}

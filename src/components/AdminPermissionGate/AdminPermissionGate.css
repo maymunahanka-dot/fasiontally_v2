@@ -1,0 +1,309 @@
+/* Admin Permission Gate Styles */
+.admin-permission-gate {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.gate-container {
+  max-width: 900px;
+}
+
+.gate-content {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 40px 32px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-primary);
+  text-align: center;
+  width: 100%;
+}
+
+/* Lock Icon */
+.lock-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.lock-icon-bg {
+  width: 80px;
+  height: 80px;
+  background: var(--danger-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--danger-border);
+}
+
+.lock-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--danger-color);
+}
+
+/* Header */
+.gate-header {
+  margin-bottom: 32px;
+}
+
+.gate-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+}
+
+.gate-description {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Admin Info Card */
+.admin-info-card {
+  background: var(--bg-muted);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 24px 0;
+  text-align: left;
+  border: 1px solid var(--border-secondary);
+}
+
+.admin-info-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.admin-info-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-color);
+}
+
+.admin-info-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.admin-info-content {
+  margin-left: 32px;
+}
+
+.admin-info-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.admin-info-detail {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.admin-info-detail strong {
+  color: var(--text-primary);
+}
+
+/* Permission Status */
+.permission-status {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 24px 0;
+  border: 1px solid var(--border-primary);
+}
+
+.permission-status-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.permission-status-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-color);
+}
+
+.permission-status-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.permissions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.permission-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.permission-item.granted {
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: var(--success-color);
+}
+
+.permission-item.denied {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  color: var(--danger-color);
+}
+
+.permission-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.permission-indicator.granted {
+  background: var(--success-color);
+  color: white;
+}
+
+.permission-indicator.denied {
+  background: var(--danger-color);
+  color: white;
+}
+
+.permission-name {
+  font-weight: 500;
+}
+
+/* Actions */
+.gate-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 32px 0 24px 0;
+}
+
+.back-btn,
+.logout-btn {
+  min-width: 140px;
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Help Section */
+.help-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: left;
+}
+
+.help-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--warning-color);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.help-text {
+  font-size: 14px;
+  color: var(--warning-color);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.help-text strong {
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-permission-gate {
+    padding: 16px;
+  }
+
+  .gate-content {
+    padding: 32px 24px;
+  }
+
+  .gate-title {
+    font-size: 24px;
+  }
+
+  .gate-description {
+    font-size: 15px;
+  }
+
+  .permissions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gate-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .back-btn,
+  .logout-btn {
+    width: 100%;
+  }
+
+  .help-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .admin-info-content {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+}
+
+/* Dark theme adjustments */
+.dark .gate-content {
+  background: var(--bg-primary);
+  border-color: var(--border-secondary);
+}
+
+.dark .admin-info-card {
+  background: var(--bg-secondary);
+  border-color: var(--border-primary);
+}
+
+.dark .permission-status {
+  background: var(--bg-secondary);
+  border-color: var(--border-secondary);
+}

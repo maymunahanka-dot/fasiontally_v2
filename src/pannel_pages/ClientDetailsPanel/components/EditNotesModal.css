@@ -1,0 +1,143 @@
+.edit_notes_modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.edit_notes_modal {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transition: background-color 0.3s ease;
+}
+
+/* Header */
+.edit_notes_modal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 0 24px;
+  margin-bottom: 24px;
+}
+
+.edit_notes_modal_title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.edit_notes_modal_close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit_notes_modal_close:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+/* Content */
+.edit_notes_modal_content {
+  padding: 0 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.edit_notes_form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Actions */
+.edit_notes_modal_actions {
+  margin-top: 8px;
+}
+
+.edit_notes_save_btn {
+  width: 100%;
+  background: var(--primary-color) !important;
+  color: white !important;
+  border: none !important;
+  font-weight: 600 !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+}
+
+.edit_notes_save_btn:hover {
+  background: var(--primary-hover) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .edit_notes_modal_overlay {
+    padding: 16px;
+  }
+
+  .edit_notes_modal {
+    max-width: 100%;
+  }
+
+  .edit_notes_modal_header {
+    padding: 20px 20px 0 20px;
+    margin-bottom: 20px;
+  }
+
+  .edit_notes_modal_content {
+    padding: 0 20px 20px 20px;
+    gap: 20px;
+  }
+}
+
+/* Animation */
+.edit_notes_modal_overlay {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.edit_notes_modal {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

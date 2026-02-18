@@ -1,0 +1,333 @@
+/* Designs Tab Styles */
+.client_details_designs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 3rem;
+}
+
+.client_designs_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.client_designs_count {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.client_designs_new_btn {
+  background: var(--primary-color);
+  color: var(--text-inverse);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.client_designs_new_btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.client_designs_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.client_design_card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.client_design_card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.client_design_image_container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.client_design_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.client_design_card:hover .client_design_image {
+  transform: scale(1.05);
+}
+
+.client_design_status_badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 0.375rem 0.875rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.client_design_status_badge.completed {
+  background: var(--success-color);
+  color: var(--text-inverse);
+}
+
+.client_design_status_badge.in_progress {
+  background: var(--info-color);
+  color: var(--text-inverse);
+}
+
+.client_design_content {
+  padding: 1.25rem;
+}
+
+.client_design_title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.client_design_date {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  margin: 0 0 1rem 0;
+  transition: color 0.3s ease;
+}
+
+.client_design_footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.client_design_price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+.client_design_arrow_btn {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client_design_arrow_btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-secondary);
+}
+
+/* Mobile Responsive for Designs */
+@media (max-width: 768px) {
+  .client_designs_header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .client_designs_count {
+    font-size: 1.125rem;
+  }
+
+  .client_designs_new_btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1.5rem;
+  }
+
+  .client_designs_grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .client_design_image_container {
+    height: 180px;
+  }
+
+  .client_design_content {
+    padding: 1rem;
+  }
+
+  .client_design_title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .client_designs_count {
+    font-size: 1rem;
+  }
+
+  .client_designs_new_btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  .client_designs_grid {
+    gap: 1rem;
+  }
+
+  .client_design_image_container {
+    height: 160px;
+  }
+
+  .client_design_content {
+    padding: 0.875rem;
+  }
+
+  .client_design_title {
+    font-size: 0.95rem;
+  }
+
+  .client_design_date {
+    font-size: 0.85rem;
+  }
+
+  .client_design_price {
+    font-size: 1rem;
+  }
+}
+
+/* Loading State */
+.client_designs_loading {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Empty State */
+.client_designs_empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.client_designs_empty p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.client_designs_empty_btn {
+  background: var(--primary-color);
+  color: var(--text-inverse);
+  border: none;
+  padding: 0.875rem 1.75rem;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.client_designs_empty_btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+/* No Image Placeholder */
+.client_design_no_image {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client_design_no_image span {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Category */
+.client_design_category {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.25rem 0;
+  transition: color 0.3s ease;
+}
+
+/* Add Design Panel Overlay */
+.add_design_panel_overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.add_design_panel_overlay > div {
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Active Status Badge */
+.client_design_status_badge.active {
+  background: var(--success-color);
+  color: var(--text-inverse);
+}
