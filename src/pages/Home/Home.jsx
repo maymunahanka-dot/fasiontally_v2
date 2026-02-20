@@ -258,7 +258,7 @@ const Home = () => {
                   className="btn-primaryy"
                   onClick={() => navigate("/signup")}
                 >
-                  14 Days Free Trial
+                  Get Started
                 </button>
               </div>
             </div>
@@ -327,7 +327,7 @@ const Home = () => {
                 className="btn-primaryy"
                 onClick={() => navigate("/signup")}
               >
-                Get Started
+                14 Days Free Trial
               </button>
             </div>
           </div>
