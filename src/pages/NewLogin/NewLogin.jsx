@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { useNewAuth } from "../../contexts/NewAuthContext";
 import Input from "../../components/Input";
 import Button from "../../components/button/Button";
@@ -106,6 +107,14 @@ const NewLogin = () => {
       <div className="new-login-right-section">
         <div className="new-login-right-content">
           <div className="new-login-header">
+            <button
+              type="button"
+              className="new-login-back-btn"
+              onClick={() => navigate("/")}
+              title="Back to Home"
+            >
+              <ArrowLeft size={20} />
+            </button>
             <h1 className="new-login-title">Welcome Back</h1>
             <p className="new-login-subtitle">
               Sign in to your FashionTally account
@@ -229,8 +238,17 @@ const NewLogin = () => {
 
             <p className="new-login-terms">
               By signing in, you agree to the{" "}
-              <span className="new-login-terms-link">Terms of Service</span> and{" "}
-              <span className="new-login-terms-link">
+              <span
+                className="new-login-terms-link"
+                onClick={() => navigate("/terms-of-service")}
+              >
+                Terms of Service
+              </span>{" "}
+              and{" "}
+              <span
+                className="new-login-terms-link"
+                onClick={() => navigate("/privacy-policy")}
+              >
                 Data Processing Agreement
               </span>
             </p>

@@ -612,6 +612,18 @@ const Inventory = () => {
                       Min: {item.minStock} {item.unit}
                     </span>
                   </div>
+                  <div className="inventory_created_date">
+                    <span className="inventory_date_label">Created:</span>
+                    <span className="inventory_date_value">
+                      {item.createdAt instanceof Date
+                        ? item.createdAt.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          })
+                        : "N/A"}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

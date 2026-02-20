@@ -197,8 +197,8 @@ const SubscriptionPanel = ({ onClose }) => {
     const endDate = new Date(subscription.subscriptionEndDate);
     const today = new Date();
 
-    // Calculate total subscription period (assume 30 days for monthly, 3 days for trial)
-    const totalDays = subscription.isTrialActive ? 3 : 30;
+    // Calculate total subscription period (assume 30 days for monthly, 14 days for trial)
+    const totalDays = subscription.isTrialActive ? 14 : 30;
     const startDate = new Date(endDate);
     startDate.setDate(startDate.getDate() - totalDays);
 
@@ -412,7 +412,7 @@ const SubscriptionPanel = ({ onClose }) => {
         <div className="subscription_info">
           <h4>Subscription Details</h4>
           <ul>
-            <li>• All plans include a 3-day free trial</li>
+            <li>• All plans include a 14-day free trial</li>
             <li>• Cancel anytime, no questions asked</li>
             <li>• Secure payment processing</li>
             <li>• 24/7 customer support</li>

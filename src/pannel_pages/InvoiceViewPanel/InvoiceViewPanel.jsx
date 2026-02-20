@@ -25,12 +25,66 @@ const InvoiceViewPanel = ({ onClose, invoice }) => {
 
       try {
         const effectiveEmail = getEffectiveUserEmail(user);
+
+        // Load user data first to get backup info
+        const userDoc = await getDoc(
+          doc(db, "fashiontally_users", effectiveEmail)
+        );
+        let userData = null;
+
+        if (userDoc.exists()) {
+          userData = userDoc.data();
+        }
+
+        // Load brand settings
         const brandDoc = await getDoc(
           doc(db, "fashiontally_brand_settings", effectiveEmail)
         );
+
         if (brandDoc.exists()) {
-          const data = brandDoc.data();
-          setBrandData(data);
+          const brandData = brandDoc.data();
+          // Merge brand data with user data as fallback for each field
+          setBrandData({
+            businessName:
+              brandData.businessName || userData?.businessName || null,
+            businessAddress:
+              brandData.businessAddress || userData?.businessAddress || null,
+            businessPhone:
+              brandData.businessPhone || userData?.phoneNumber || null,
+            businessEmail: brandData.businessEmail || userData?.email || null,
+            businessWebsite: brandData.businessWebsite || null,
+            instagramHandle: brandData.instagramHandle || null,
+            logoUrl:
+              brandData.logoUrl ||
+              userData?.logoUrl ||
+              userData?.profilePicture ||
+              null,
+            primaryColor: brandData.primaryColor || "#1f2937",
+            secondaryColor: brandData.secondaryColor || "#666666",
+            bankName: brandData.bankName || null,
+            accountNumber: brandData.accountNumber || null,
+            accountName: brandData.accountName || null,
+            footerText: brandData.footerText || null,
+            termsAndConditions: brandData.termsAndConditions || null,
+          });
+        } else if (userData) {
+          // No brand settings, use user data as fallback
+          setBrandData({
+            businessName: userData.businessName || null,
+            businessAddress: userData.businessAddress || null,
+            businessPhone: userData.phoneNumber || null,
+            businessEmail: userData.email || null,
+            businessWebsite: null,
+            instagramHandle: null,
+            logoUrl: userData.logoUrl || userData.profilePicture || null,
+            primaryColor: "#1f2937",
+            secondaryColor: "#666666",
+            bankName: null,
+            accountNumber: null,
+            accountName: null,
+            footerText: null,
+            termsAndConditions: null,
+          });
         }
       } catch (error) {
         console.error("Error loading brand data:", error);

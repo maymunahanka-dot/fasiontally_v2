@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import { useNewAuth } from "../../../contexts/NewAuthContext";
 import Input from "../../../components/Input";
 import Button from "../../../components/button/Button";
@@ -13,6 +16,7 @@ const Step1PersonalInfo = ({
   onInputChange,
   onNext,
 }) => {
+  const navigate = useNavigate();
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [showOTPModal, setShowOTPModal] = useState(false);
   const [generatedOTP, setGeneratedOTP] = useState("");
@@ -36,7 +40,7 @@ const Step1PersonalInfo = ({
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
-    } else if (formData.phone.length < 10) {
+    } else if (formData.phone.length < 8) {
       newErrors.phone = "Please enter a valid phone number";
     }
 
@@ -163,16 +167,30 @@ const Step1PersonalInfo = ({
           active={!!formData.email}
         />
 
-        <Input
-          type="tel"
-          label=""
-          value={formData.phone}
-          onChange={(e) => onInputChange("phone", e.target.value)}
-          placeholder="Phone Number"
-          required
-          error={errors.phone}
-          active={!!formData.phone}
-        />
+        <div
+          className={`phone-input-wrapper ${errors.phone ? "error" : ""} ${
+            formData.phone ? "active" : ""
+          }`}
+        >
+          <PhoneInput
+            country={"ng"}
+            value={formData.phone}
+            onChange={(phone) => onInputChange("phone", phone)}
+            placeholder="Phone Number"
+            inputClass="phone-input-field"
+            containerClass="phone-input-container"
+            buttonClass="phone-input-button"
+            dropdownClass="phone-input-dropdown"
+            searchClass="phone-input-search"
+            enableSearch={true}
+            disableSearchIcon={true}
+            countryCodeEditable={false}
+            specialLabel=""
+          />
+          {errors.phone && (
+            <span className="phone-input-error">{errors.phone}</span>
+          )}
+        </div>
 
         <div className="n_s_u_s-s-submitbutton">
           <Button
@@ -244,8 +262,17 @@ const Step1PersonalInfo = ({
 
         <p className="n_s_u_s-s-term">
           By signing up, you agree to the{" "}
-          <span className="n_s_u_s-s-terml-link">Terms of Service</span> and{" "}
-          <span className="n_s_u_s-s-terml-link">
+          <span
+            className="n_s_u_s-s-terml-link"
+            onClick={() => navigate("/terms-of-service")}
+          >
+            Terms of Service
+          </span>{" "}
+          and{" "}
+          <span
+            className="n_s_u_s-s-terml-link"
+            onClick={() => navigate("/privacy-policy")}
+          >
             Data Processing Agreement
           </span>
         </p>

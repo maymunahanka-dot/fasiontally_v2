@@ -16,12 +16,12 @@ import NewOrderPanel from "../../../../pannel_pages/NewOrderPanel";
 import AddClientPanel from "../../../../pannel_pages/AddClientPanel";
 import SlideInMenu from "../../../../components/SlideInMenu/SlideInMenu";
 import "./DashboardOverview.css";
-import { TbNotification } from "react-icons/tb";
+import { TbLogout } from "react-icons/tb";
 import Loading from "../../../../components/Loading/Loading";
 
 const DashboardOverview = () => {
   const navigate = useNavigate();
-  const { user } = useNewAuth();
+  const { user, signOut } = useNewAuth();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showAddInventory, setShowAddInventory] = useState(false);
   const [showNewOrder, setShowNewOrder] = useState(false);
@@ -128,6 +128,18 @@ const DashboardOverview = () => {
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
+  };
+
+  const handleLogout = async () => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      try {
+        await signOut();
+        navigate("/login");
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+    }
   };
 
   const toggleAddInventory = () => {
@@ -295,10 +307,9 @@ const DashboardOverview = () => {
               Here's an overview of your fashion business
             </p>
           </div>
-          {/* 
-          <button className="search-btn" onClick={toggleNotifications}>
-            <TbNotification className="search-icon" size={34} />
-          </button> */}
+          <button className="search-btn" onClick={handleLogout}>
+            <TbLogout className="search-icon" size={34} color="#dc2626" />
+          </button>
         </div>
       </div>
 

@@ -1,5 +1,4 @@
 // Cash on Rails payment integration for subscription management
-// Cash on Rails payment integration for subscription management
 
 /**
  * Initialize Cash on Rails payment - Main function used by subscription page

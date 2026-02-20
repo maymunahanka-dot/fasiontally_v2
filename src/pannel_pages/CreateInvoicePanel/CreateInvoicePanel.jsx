@@ -30,7 +30,7 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
   const [paymentMethod, setPaymentMethod] = useState("Cash");
   const [status, setStatus] = useState("Unpaid");
   const [discount, setDiscount] = useState(0);
-  const [taxRate, setTaxRate] = useState(7.5);
+  const [taxRate, setTaxRate] = useState(7);
   const [items, setItems] = useState([
     {
       id: Date.now(),
@@ -82,7 +82,7 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
       setPaymentMethod(selectedInvoice.paymentMethod || "Cash");
       setStatus(selectedInvoice.status || "Unpaid");
       setDiscount(selectedInvoice.discount || 0);
-      setTaxRate(selectedInvoice.taxRate || 7.5);
+      setTaxRate(selectedInvoice.taxRate || 7);
       setItems(
         selectedInvoice.items?.map((item, index) => ({
           ...item,
@@ -484,7 +484,7 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
         },
       ]);
       setDiscount(0);
-      setTaxRate(7.5);
+      setTaxRate(7);
       setStatus("Unpaid");
       setPaymentMethod("Cash");
 
@@ -881,7 +881,7 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
             <Input
               label="Tax Rate (%)"
               type="number"
-              placeholder="7.5"
+              placeholder="7"
               value={taxRate}
               onChange={(e) => setTaxRate(parseFloat(e.target.value) || 0)}
               variant="rounded"

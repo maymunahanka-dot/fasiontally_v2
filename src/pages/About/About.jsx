@@ -347,7 +347,7 @@ const About = () => {
             <button className="about_btn-cta-outline">Schedule Demo</button>
           </div>
           <p className="about_cta-note">
-            No credit card required • 3 days free trial • Cancel anytime
+            No credit card required • 14 days free trial • Cancel anytime
           </p>
         </div>
       </section>

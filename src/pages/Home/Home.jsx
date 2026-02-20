@@ -254,8 +254,12 @@ const Home = () => {
                 >
                   Login
                 </button>
-                  <button className="btn-primaryy" onClick={() => navigate("/signup")}>Get Started</button>
-              
+                <button
+                  className="btn-primaryy"
+                  onClick={() => navigate("/signup")}
+                >
+                  Get Started
+                </button>
               </div>
             </div>
             <div className="nav-mobile-toggle">
@@ -355,8 +359,12 @@ const Home = () => {
                 >
                   Login<span className="btn-arrow">→</span>
                 </button>
-                  <button className="btn-outline btn-lg" onClick={() => navigate("/signup")}>Get Started</button>
-             
+                <button
+                  className="btn-outline btn-lg"
+                  onClick={() => navigate("/signup")}
+                >
+                  Get Started
+                </button>
               </div>
               <div className="hero-social-proof">
                 <div className="social-proof-item">
@@ -681,7 +689,7 @@ const Home = () => {
             <button className="landing_btn-cta-outline">Schedule Demo</button>
           </div>
           <p className="landing_cta-note">
-            No credit card required • 3 days free trial • Cancel anytime
+            No credit card required • 14 days free trial • Cancel anytime
           </p>
         </div>
       </section>

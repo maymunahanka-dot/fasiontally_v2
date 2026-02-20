@@ -593,6 +593,25 @@
   transition: color 0.3s ease;
 }
 
+.inventory_created_date {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: space-between;
+}
+
+.inventory_date_label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.inventory_date_value {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
 .inventory_no_items {
   text-align: center;
   padding: 3rem 1rem;
@@ -932,6 +951,18 @@
   }
 
   .inventory_min_stock {
+    font-size: 0.75rem;
+  }
+
+  .inventory_created_date {
+    gap: 0.25rem;
+  }
+
+  .inventory_date_label {
+    font-size: 0.75rem;
+  }
+
+  .inventory_date_value {
     font-size: 0.75rem;
   }
 

@@ -30,7 +30,7 @@
 .loading_spinner_inner {
   width: 32px;
   height: 32px;
-  background: white;
+  background: rgb(112, 182, 147);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

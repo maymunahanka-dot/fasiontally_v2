@@ -883,3 +883,211 @@
 .selected-plan-text strong {
   font-weight: 700;
 }
+
+/* Sign in link styling */
+.new-signup-signin-link {
+  font-size: 14px;
+  font-family: sans-serif;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 20px;
+  transition: color 0.3s ease;
+}
+
+.new-signup-link {
+  font-weight: 700;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.new-signup-link:hover {
+  color: var(--primary-hover);
+}
+
+/* Back button styling */
+.new-signup-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.new-signup-back-btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+  transform: translateX(-2px);
+}
+
+/* Phone Input Styling to match existing inputs */
+.phone-input-wrapper {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.phone-input-container {
+  width: 100% !important;
+  position: relative;
+}
+
+.phone-input-field {
+  width: 100% !important;
+  padding: 0.75rem 1rem 0.75rem 60px !important;
+  font-size: 1rem !important;
+  border: none !important;
+  border-bottom: 2px solid var(--border-primary) !important;
+  border-radius: 0 !important;
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  box-sizing: border-box !important;
+  transition: all 0.3s ease !important;
+  outline: none !important;
+  font-family: inherit !important;
+}
+
+.phone-input-field::placeholder {
+  color: var(--text-tertiary) !important;
+  transition: color 0.3s ease !important;
+}
+
+.phone-input-field:focus {
+  border-bottom-color: var(--primary-color) !important;
+  background-color: var(--bg-card) !important;
+}
+
+.phone-input-button {
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid var(--border-primary) !important;
+  border-radius: 0 !important;
+  padding: 0.75rem 0.5rem !important;
+  height: auto !important;
+  transition: all 0.3s ease !important;
+}
+
+.phone-input-button:hover {
+  background-color: var(--hover-bg) !important;
+}
+
+.phone-input-button:focus {
+  border-bottom-color: var(--primary-color) !important;
+}
+
+.phone-input-dropdown {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-primary) !important;
+  border-radius: 6px !important;
+  box-shadow: var(--shadow-lg) !important;
+  z-index: 9999 !important;
+}
+
+.phone-input-dropdown .country {
+  color: var(--text-primary) !important;
+  padding: 0.5rem 1rem !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.phone-input-dropdown .country:hover {
+  background-color: var(--hover-bg) !important;
+}
+
+.phone-input-dropdown .country.highlight {
+  background-color: var(--primary-light) !important;
+}
+
+.phone-input-search {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-primary) !important;
+  border-radius: 4px !important;
+  color: var(--text-primary) !important;
+  padding: 0.5rem !important;
+  margin: 0.5rem !important;
+  font-size: 0.9rem !important;
+}
+
+.phone-input-search::placeholder {
+  color: var(--text-tertiary) !important;
+}
+
+.phone-input-search:focus {
+  outline: none !important;
+  border-color: var(--primary-color) !important;
+}
+
+.phone-input-error {
+  display: block;
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+/* Error state for phone input */
+.phone-input-wrapper.error .phone-input-field {
+  border-bottom-color: var(--error-color) !important;
+}
+
+.phone-input-wrapper.error .phone-input-button {
+  border-bottom-color: var(--error-color) !important;
+}
+
+/* Active state for phone input */
+.phone-input-wrapper.active .phone-input-field {
+  border-bottom-color: var(--primary-color) !important;
+  background-color: var(--selected-bg) !important;
+}
+
+.phone-input-wrapper.active .phone-input-button {
+  border-bottom-color: var(--primary-color) !important;
+}
+
+/* Dark theme adjustments for phone input */
+body.dark-theme .react-tel-input .flag-dropdown {
+  background-color: var(--bg-card) !important;
+}
+
+body.dark-theme .react-tel-input .selected-flag {
+  background-color: transparent !important;
+}
+
+body.dark-theme .react-tel-input .country-list {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-primary) !important;
+}
+
+body.dark-theme .react-tel-input .country-list .country {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .react-tel-input .country-list .country:hover {
+  background-color: var(--hover-bg) !important;
+}
+
+/* Light theme adjustments for phone input */
+body.light-theme .react-tel-input .flag-dropdown {
+  background-color: var(--bg-card) !important;
+}
+
+body.light-theme .react-tel-input .selected-flag {
+  background-color: transparent !important;
+}
+
+body.light-theme .react-tel-input .country-list {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-primary) !important;
+}
+
+body.light-theme .react-tel-input .country-list .country {
+  color: var(--text-primary) !important;
+}
+
+body.light-theme .react-tel-input .country-list .country:hover {
+  background-color: var(--hover-bg) !important;
+}

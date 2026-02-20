@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
-import Button from "../../../components/button/Button"; 
+import Button from "../../../components/button/Button";
 
 const Step2Password = ({
   formData,
@@ -10,6 +11,7 @@ const Step2Password = ({
   onNext,
   onBack,
 }) => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -154,8 +156,17 @@ const Step2Password = ({
 
         <p className="n_s_u_s-s-term">
           By signing up, you agree to the{" "}
-          <span className="n_s_u_s-s-terml-link">Terms of Service</span> and{" "}
-          <span className="n_s_u_s-s-terml-link">
+          <span
+            className="n_s_u_s-s-terml-link"
+            onClick={() => navigate("/terms-of-service")}
+          >
+            Terms of Service
+          </span>{" "}
+          and{" "}
+          <span
+            className="n_s_u_s-s-terml-link"
+            onClick={() => navigate("/privacy-policy")}
+          >
             Data Processing Agreement
           </span>
         </p>

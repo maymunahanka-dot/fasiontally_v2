@@ -183,7 +183,7 @@ const Sidebar = () => {
               businessAddress: userData.address || "",
               businessPhone: userData.phone || "",
               businessEmail: userData.email || "",
-              logoUrl: "",
+              logoUrl: userData.logoUrl || userData.profilePicture || "",
             });
           }
         }

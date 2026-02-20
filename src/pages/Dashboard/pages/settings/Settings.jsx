@@ -390,7 +390,7 @@ const Settings = () => {
           <h2 className="sett_business_name">
             {settingsData.businessInfo.name}
           </h2>
-          <p className="sett_business_type">{settingsData.businessInfo.type}</p>
+          {/* <p className="sett_business_type">{settingsData.businessInfo.type}</p> */}
 
           <div className="sett_business_contact">
             <div className="sett_contact_row">

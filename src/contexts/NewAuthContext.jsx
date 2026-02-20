@@ -259,13 +259,15 @@ export const NewAuthProvider = ({ children }) => {
         // Store business information from signup
         businessName: businessName || "",
         businessCategory: category || "",
-        // Add 3-day free trial automatically - matching tally-main
+        // Store business logo URL from Cloudinary upload
+        logoUrl: formData.logoUrl || formData.logo || "",
+        // Add 14-day free trial automatically - matching tally-main
         subscriptionType: "trial",
         isTrialActive: true,
         planType: "Growth", // Give trial users the Growth plan features
         subscriptionEndDate: new Date(
-          Date.now() + 3 * 24 * 60 * 60 * 1000
-        ).toISOString(), // 3 days from now
+          Date.now() + 14 * 24 * 60 * 60 * 1000
+        ).toISOString(), // 14 days from now
         isSubscribed: true,
         trialStartDate: new Date().toISOString(),
       };
@@ -322,6 +324,8 @@ export const NewAuthProvider = ({ children }) => {
         businessName: businessName || "",
         businessCategory: category || "",
         businessAddress: businessAddress || "",
+        // Include logo URL in user context
+        logoUrl: formData.logoUrl || formData.logo || "",
         isPhoneBasedAccount: false,
         displayName: name,
         provider: "email",
@@ -346,7 +350,7 @@ export const NewAuthProvider = ({ children }) => {
       console.log("✅ Signup flag cleared");
 
       toast.success(
-        `Welcome ${name}! Account created successfully. You have a 3-day free trial to explore all features.`
+        `Welcome ${name}! Account created successfully. You have a 14-day free trial to explore all features.`
       );
 
       // Check if there's a selected plan in URL params
@@ -463,13 +467,13 @@ export const NewAuthProvider = ({ children }) => {
           photoURL: firebaseUser.photoURL || "",
           provider: "google",
           createdAt: serverTimestamp(),
-          // Add 3-day free trial automatically for Google sign-ups
+          // Add 14-day free trial automatically for Google sign-ups
           subscriptionType: "trial",
           isTrialActive: true,
           planType: "Growth", // Give trial users the Growth plan features
           subscriptionEndDate: new Date(
-            Date.now() + 3 * 24 * 60 * 60 * 1000
-          ).toISOString(), // 3 days from now
+            Date.now() + 14 * 24 * 60 * 60 * 1000
+          ).toISOString(), // 14 days from now
           isSubscribed: true,
           trialStartDate: new Date().toISOString(),
         });
@@ -526,7 +530,7 @@ export const NewAuthProvider = ({ children }) => {
       toast.success(
         `Welcome ${name}! ${
           !userDoc.exists()
-            ? "You have a 3-day free trial to explore all features."
+            ? "You have a 14-day free trial to explore all features."
             : ""
         }`
       );

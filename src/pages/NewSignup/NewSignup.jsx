@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { useNewAuth } from "../../contexts/NewAuthContext";
 import Step1PersonalInfo from "./steps/Step1PersonalInfo";
 import Step2Password from "./steps/Step2Password";
@@ -129,6 +130,14 @@ const NewSignup = () => {
       </div>
       <div className="n_s_u_signup-step-right-sec">
         <div className="n_s_u_signup-step-right-sec-content">
+          <button
+            type="button"
+            className="new-signup-back-btn"
+            onClick={() => navigate("/")}
+            title="Back to Home"
+          >
+            <ArrowLeft size={20} />
+          </button>
           {selectedPlan && (
             <div className="selected-plan-indicator">
               <p className="selected-plan-text">
@@ -138,6 +147,16 @@ const NewSignup = () => {
           )}
           <p className="n_s_u_s-s-step">step {currentStep} / 3</p>
           {renderStep()}
+
+          <p className="new-signup-signin-link">
+            Already have an account?{" "}
+            <span
+              className="new-signup-link"
+              onClick={() => navigate("/login")}
+            >
+              Sign in
+            </span>
+          </p>
         </div>
       </div>
     </div>

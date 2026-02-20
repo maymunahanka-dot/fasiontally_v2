@@ -8,7 +8,7 @@ export const sendOTP = async ({ mail, otp }) => {
 
   try {
     const response = await axios.post(
-      "https://mailtrap-uikk.onrender.com/api/send-otp",
+      "https://mailtrap-g2su.onrender.com/api/send-otp",
       {
         mail: mail,
         otp: otp,

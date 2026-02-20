@@ -1,7 +1,7 @@
 /* Landing Page Styles */
 .landing-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 50%, #f0fdfa 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 50%, #ffffff 100%);
   overflow-x: hidden;
 }
 
@@ -334,7 +334,7 @@
 
 .dashboardd-card {
   position: relative;
-  background: linear-gradient(135deg, #ccfbf1, #99f6e4);
+  background: linear-gradient(135deg, #84ecd6, #5ec2ae);
   border-radius: 1.5rem;
   padding: 2rem;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
@@ -527,11 +527,11 @@
   width: 3rem;
   height: 3rem;
   border-radius: 0.75rem;
-  background: linear-gradient(135deg, #ccfbf1, #99f6e4);
+  background: linear-gradient(135deg, #5ebeaa, #4a9686);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #14b8a6;
+  color: #ffffff;
   margin-bottom: 1rem;
   transition: transform 0.3s;
 }
@@ -555,7 +555,7 @@
 /* Pricing sectionnn */
 .pricing-sectionnn-new {
   padding: 3rem 1rem;
-  background: linear-gradient(135deg, #f0fdfa, white);
+  background: linear-gradient(135deg, #ffffff, white);
 }
 
 .pricing-grid-new {

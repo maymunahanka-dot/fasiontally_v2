@@ -49,6 +49,16 @@ const BrandPanel = ({ onClose }) => {
       const effectiveEmail = getEffectiveUserEmail(user);
       console.log("📧 BrandPanel: Using effective email:", effectiveEmail);
 
+      // Load user data first to get backup logo
+      const userDocRef = doc(db, "fashiontally_users", effectiveEmail);
+      const userDoc = await getDoc(userDocRef);
+      let userLogoUrl = "";
+
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        userLogoUrl = userData.logoUrl || userData.profilePicture || "";
+      }
+
       const docRef = doc(db, "fashiontally_brand_settings", effectiveEmail);
       const docSnap = await getDoc(docRef);
 
@@ -64,20 +74,21 @@ const BrandPanel = ({ onClose }) => {
         setBankName(data.bankName || "");
         setAccountNumber(data.accountNumber || "");
         setAccountName(data.accountName || "");
-        setLogoUrl(data.logoUrl || "");
+        // Use brand logo, fallback to user logo
+        setLogoUrl(data.logoUrl || userLogoUrl);
         setPrimaryColor(data.primaryColor || "#000000");
         setSecondaryColor(data.secondaryColor || "#666666");
         setFooterText(data.footerText || "");
         setTermsAndConditions(data.termsAndConditions || "");
       } else {
         // No brand settings exist - only pre-fill basic info from signup
-        const userDocRef = doc(db, "fashiontally_users", effectiveEmail);
-        const userDoc = await getDoc(userDocRef);
         if (userDoc.exists()) {
           const userData = userDoc.data();
           // Only pre-fill the business name from signup, leave other fields empty for user to fill
           setBrandName(userData.businessName || "");
           setEmail(userData.email || "");
+          // Use user logo as fallback
+          setLogoUrl(userLogoUrl);
           // Leave other fields empty - don't pre-fill with profile data
           setBusinessAddress("");
           setPhoneNumber("");
@@ -86,7 +97,6 @@ const BrandPanel = ({ onClose }) => {
           setBankName("");
           setAccountNumber("");
           setAccountName("");
-          setLogoUrl("");
           setPrimaryColor("#000000");
           setSecondaryColor("#666666");
           setFooterText("");

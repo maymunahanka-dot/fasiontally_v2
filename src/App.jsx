@@ -24,8 +24,6 @@ function App() {
   const navigate = useNavigate();
 
   // Use the new auth system
-  // Use the new auth system
-  // Use the new auth system
   const currentUser = user;
   const isLoading = loading;
 

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
 import Button from "../../../components/button/Button";
 import { uploadToCloudinary } from "../../../utils/cloudinaryUpload";
@@ -36,6 +37,7 @@ const Step3BusinessInfo = ({
   onSubmit,
   onBack,
 }) => {
+  const navigate = useNavigate();
   const [dragActive, setDragActive] = useState(false);
   const [logoPreview, setLogoPreview] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -402,8 +404,17 @@ const Step3BusinessInfo = ({
 
         <p className="n_s_u_s-s-term">
           By signing up, you agree to the{" "}
-          <span className="n_s_u_s-s-terml-link">Terms of Service</span> and{" "}
-          <span className="n_s_u_s-s-terml-link">
+          <span
+            className="n_s_u_s-s-terml-link"
+            onClick={() => navigate("/terms-of-service")}
+          >
+            Terms of Service
+          </span>{" "}
+          and{" "}
+          <span
+            className="n_s_u_s-s-terml-link"
+            onClick={() => navigate("/privacy-policy")}
+          >
             Data Processing Agreement
           </span>
         </p>
