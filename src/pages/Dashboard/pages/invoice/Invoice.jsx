@@ -664,10 +664,118 @@ const Invoice = () => {
   };
 
   // Handle PDF download for invoice card
+  // const handleDownloadPDF = async (invoice) => {
+  //   setDownloadingPDF(invoice.id); // Set loading state for this specific invoice
+  //   try {
+  //     // Get effective email for brand data
+  //     const effectiveEmail = getEffectiveUserEmail(user);
+
+  //     // Fetch brand data
+  //     const brandRef = doc(db, "fashiontally_brand_settings", effectiveEmail);
+  //     const brandDoc = await getDoc(brandRef);
+
+  //     let companyData = {
+  //       businessName: "------",
+  //       address: "------",
+  //       phone: "------",
+  //       email: "------",
+  //       logoUrl: "",
+  //       primaryColor: "#1f2937",
+  //       secondaryColor: "#666666",
+  //     };
+
+  //     if (brandDoc.exists()) {
+  //       const data = brandDoc.data();
+  //       companyData = {
+  //         businessName: data.businessName || "------",
+  //         address: data.businessAddress || "------",
+  //         phone: data.businessPhone || "------",
+  //         email: data.businessEmail || "------",
+  //         logoUrl: data.logoUrl || "",
+  //         primaryColor: data.primaryColor || "#1f2937",
+  //         secondaryColor: data.secondaryColor || "#666666",
+  //       };
+  //     } else {
+  //       // Fallback to user data
+  //       const userRef = doc(db, "fashiontally_users", effectiveEmail);
+  //       const userDoc = await getDoc(userRef);
+  //       if (userDoc.exists()) {
+  //         const userData = userDoc.data();
+  //         companyData = {
+  //           businessName: userData.businessName || "------",
+  //           address: userData.address || "------",
+  //           phone: userData.phone || "------",
+  //           email: userData.email || "------",
+  //           logoUrl: "",
+  //           primaryColor: "#1f2937",
+  //           secondaryColor: "#666666",
+  //         };
+  //       }
+  //     }
+
+  //     // Create temporary container off-screen
+  //     const tempContainer = document.createElement("div");
+  //     tempContainer.style.position = "fixed";
+  //     tempContainer.style.left = "-9999px";
+  //     tempContainer.style.top = "0";
+  //     document.body.appendChild(tempContainer);
+
+  //     try {
+  //       // Render invoice into temp container
+  //       const root = createRoot(tempContainer);
+
+  //       await new Promise((resolve) => {
+  //         root.render(
+  //           <InvoicePDFComponent data={invoice} company={companyData} />
+  //         );
+  //         // Wait for render and any image loads
+  //         setTimeout(resolve, 500);
+  //       });
+
+  //       // Capture the rendered element
+  //       const invoiceElement = tempContainer.firstChild;
+  //       const canvas = await html2canvas(invoiceElement, {
+  //         scale: window.devicePixelRatio * 2,
+  //         backgroundColor: "#ffffff",
+  //         useCORS: true,
+  //         logging: false,
+  //         allowTaint: true,
+  //       });
+
+  //       const dataCanvas = canvas.toDataURL("image/png");
+
+  //       // Create PDF
+  //       const pdf = new jsPDF({
+  //         orientation: "portrait",
+  //         unit: "px",
+  //         format: "a4",
+  //       });
+
+  //       const imgProperties = pdf.getImageProperties(dataCanvas);
+  //       const pdfWidth = pdf.internal.pageSize.getWidth();
+  //       const pdfHeight =
+  //         (imgProperties.height * pdfWidth) / imgProperties.width;
+
+  //       pdf.addImage(dataCanvas, "PNG", 0, 0, pdfWidth, pdfHeight);
+  //       pdf.save(`invoice-${invoice.invoiceNumber}.pdf`);
+
+  //       // Cleanup
+  //       root.unmount();
+  //     } finally {
+  //       document.body.removeChild(tempContainer);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error generating PDF:", error);
+  //     alert("Failed to export PDF. Please try again.");
+  //   } finally {
+  //     setDownloadingPDF(null); // Clear loading state
+  //   }
+  // };
+
   const handleDownloadPDF = async (invoice) => {
-    setDownloadingPDF(invoice.id); // Set loading state for this specific invoice
+    setDownloadingPDF(invoice.id);
+
     try {
-      // Get effective email for brand data
       const effectiveEmail = getEffectiveUserEmail(user);
 
       // Fetch brand data
@@ -696,9 +804,9 @@ const Invoice = () => {
           secondaryColor: data.secondaryColor || "#666666",
         };
       } else {
-        // Fallback to user data
         const userRef = doc(db, "fashiontally_users", effectiveEmail);
         const userDoc = await getDoc(userRef);
+
         if (userDoc.exists()) {
           const userData = userDoc.data();
           companyData = {
@@ -718,31 +826,42 @@ const Invoice = () => {
       tempContainer.style.position = "fixed";
       tempContainer.style.left = "-9999px";
       tempContainer.style.top = "0";
+      tempContainer.style.width = "794px"; // A4 width in px
+      tempContainer.style.background = "#ffffff";
+
       document.body.appendChild(tempContainer);
 
-      try {
-        // Render invoice into temp container
-        const root = createRoot(tempContainer);
+      let root;
 
+      try {
+        root = createRoot(tempContainer);
+
+        // Render component
         await new Promise((resolve) => {
           root.render(
             <InvoicePDFComponent data={invoice} company={companyData} />
           );
-          // Wait for render and any image loads
-          setTimeout(resolve, 500);
+
+          // Short wait for render + images
+          setTimeout(resolve, 150);
         });
 
-        // Capture the rendered element
         const invoiceElement = tempContainer.firstChild;
+
+        if (!invoiceElement) {
+          throw new Error("Invoice element not rendered");
+        }
+
+        // Generate canvas (iPhone safe scale)
         const canvas = await html2canvas(invoiceElement, {
-          scale: window.devicePixelRatio * 2,
+          scale: 2, // IMPORTANT: do not use devicePixelRatio on iOS
           backgroundColor: "#ffffff",
           useCORS: true,
           logging: false,
-          allowTaint: true,
+          allowTaint: false,
         });
 
-        const dataCanvas = canvas.toDataURL("image/png");
+        const imgData = canvas.toDataURL("image/png");
 
         // Create PDF
         const pdf = new jsPDF({
@@ -751,24 +870,34 @@ const Invoice = () => {
           format: "a4",
         });
 
-        const imgProperties = pdf.getImageProperties(dataCanvas);
+        const imgProperties = pdf.getImageProperties(imgData);
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight =
           (imgProperties.height * pdfWidth) / imgProperties.width;
 
-        pdf.addImage(dataCanvas, "PNG", 0, 0, pdfWidth, pdfHeight);
-        pdf.save(`invoice-${invoice.invoiceNumber}.pdf`);
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
 
-        // Cleanup
-        root.unmount();
+        /* ===========================
+         iPHONE FIX (IMPORTANT)
+         =========================== */
+
+        const blob = pdf.output("blob");
+        const url = URL.createObjectURL(blob);
+
+        // iOS requires open instead of save()
+        window.open(url, "_blank");
+
+        // Cleanup URL after some time
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
       } finally {
+        if (root) root.unmount();
         document.body.removeChild(tempContainer);
       }
     } catch (error) {
       console.error("Error generating PDF:", error);
       alert("Failed to export PDF. Please try again.");
     } finally {
-      setDownloadingPDF(null); // Clear loading state
+      setDownloadingPDF(null);
     }
   };
 

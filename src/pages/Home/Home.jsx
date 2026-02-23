@@ -689,7 +689,7 @@ const Home = () => {
             <button className="landing_btn-cta-outline">Schedule Demo</button>
           </div>
           <p className="landing_cta-note">
-            No credit card required • 14 days free trial • Cancel anytime
+            No credit card required • 7 days free trial • Cancel anytime
           </p>
         </div>
       </section>
