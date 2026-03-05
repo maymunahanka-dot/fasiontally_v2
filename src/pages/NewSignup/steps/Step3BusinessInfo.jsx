@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
 import Button from "../../../components/button/Button";
+import SearchableSelect from "../../../components/SearchableSelect";
 import { uploadToCloudinary } from "../../../utils/cloudinaryUpload";
 
 // Business categories
@@ -17,16 +18,62 @@ const businessCategories = [
   "Other",
 ];
 
-// Countries list
-const countries = [
-  "Nigeria",
+// All African countries
+const africanCountries = [
+  "Algeria",
+  "Angola",
+  "Benin",
+  "Botswana",
+  "Burkina Faso",
+  "Burundi",
+  "Cabo Verde",
+  "Cameroon",
+  "Central African Republic",
+  "Chad",
+  "Comoros",
+  "Congo (Brazzaville)",
+  "Congo (Kinshasa)",
+  "Côte d'Ivoire",
+  "Djibouti",
+  "Egypt",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Eswatini",
+  "Ethiopia",
+  "Gabon",
+  "Gambia",
   "Ghana",
+  "Guinea",
+  "Guinea-Bissau",
   "Kenya",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Madagascar",
+  "Malawi",
+  "Mali",
+  "Mauritania",
+  "Mauritius",
+  "Morocco",
+  "Mozambique",
+  "Namibia",
+  "Niger",
+  "Nigeria",
+  "Rwanda",
+  "São Tomé and Príncipe",
+  "Senegal",
+  "Seychelles",
+  "Sierra Leone",
+  "Somalia",
   "South Africa",
-  "United States",
-  "United Kingdom",
-  "Canada",
-  "Other",
+  "South Sudan",
+  "Sudan",
+  "Tanzania",
+  "Togo",
+  "Tunisia",
+  "Uganda",
+  "Zambia",
+  "Zimbabwe",
 ];
 
 const Step3BusinessInfo = ({
@@ -41,6 +88,8 @@ const Step3BusinessInfo = ({
   const [dragActive, setDragActive] = useState(false);
   const [logoPreview, setLogoPreview] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [customCategory, setCustomCategory] = useState("");
+  const [showCustomCategory, setShowCustomCategory] = useState(false);
   const fileInputRef = useRef(null);
 
   const validateStep3 = () => {
@@ -54,12 +103,38 @@ const Step3BusinessInfo = ({
       newErrors.category = "Category is required";
     }
 
+    // If "Other" is selected, validate custom category
+    if (showCustomCategory && !customCategory.trim()) {
+      newErrors.category = "Please specify your category";
+    }
+
     if (!formData.country) {
       newErrors.country = "Country is required";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const handleCategoryChange = (e) => {
+    const selectedValue = e.target.value;
+
+    if (selectedValue === "Other") {
+      setShowCustomCategory(true);
+      // Don't set category yet, wait for custom input
+      onInputChange("category", "");
+    } else {
+      setShowCustomCategory(false);
+      setCustomCategory("");
+      onInputChange("category", selectedValue);
+    }
+  };
+
+  const handleCustomCategoryChange = (e) => {
+    const value = e.target.value;
+    setCustomCategory(value);
+    // Update the actual category field with custom value
+    onInputChange("category", value);
   };
 
   const handleSubmit = async () => {
@@ -223,8 +298,8 @@ const Step3BusinessInfo = ({
             Category
           </label>
           <select
-            value={formData.category}
-            onChange={(e) => onInputChange("category", e.target.value)}
+            value={showCustomCategory ? "Other" : formData.category}
+            onChange={handleCategoryChange}
             style={{
               width: "100%",
               padding: "12px",
@@ -244,49 +319,35 @@ const Step3BusinessInfo = ({
               </option>
             ))}
           </select>
-          {errors.category && (
+          {errors.category && !showCustomCategory && (
             <div className="n_s_u_error-message">{errors.category}</div>
           )}
         </div>
 
+        {/* Custom Category Input - Shows when "Other" is selected */}
+        {showCustomCategory && (
+          <Input
+            type="text"
+            label="Specify Your Category"
+            value={customCategory}
+            onChange={handleCustomCategoryChange}
+            placeholder="Enter your business category"
+            required
+            error={errors.category}
+            active={!!customCategory}
+            variant="rounded"
+          />
+        )}
+
         {/* Country Selection */}
-        <div style={{ marginBottom: "20px" }}>
-          <label
-            style={{
-              display: "block",
-              marginBottom: "10px",
-              color: "var(--text-primary)",
-              fontWeight: "500",
-            }}
-          >
-            Country
-          </label>
-          <select
-            value={formData.country}
-            onChange={(e) => onInputChange("country", e.target.value)}
-            style={{
-              width: "100%",
-              padding: "12px",
-              border: "2px solid var(--border-primary)",
-              borderRadius: "4px",
-              fontSize: "1rem",
-              background: "var(--bg-card)",
-              color: "var(--text-primary)",
-              cursor: "pointer",
-              boxSizing: "border-box",
-            }}
-          >
-            <option value="">Select Country</option>
-            {countries.map((country) => (
-              <option key={country} value={country}>
-                {country}
-              </option>
-            ))}
-          </select>
-          {errors.country && (
-            <div className="n_s_u_error-message">{errors.country}</div>
-          )}
-        </div>
+        <SearchableSelect
+          label="Country"
+          options={africanCountries}
+          value={formData.country}
+          onChange={(value) => onInputChange("country", value)}
+          placeholder="Search and select your country"
+          error={errors.country}
+        />
 
         {/* Logo Upload - Drag and Drop */}
         <div style={{ marginBottom: "20px" }}>

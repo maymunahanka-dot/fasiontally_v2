@@ -1557,3 +1557,212 @@
 .pricing-card-new:nth-child(4) {
   animation-delay: 0.4s;
 }
+
+/* Play Store Download Button */
+.hero-download {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.download-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
+  border: 2px solid #99f6e4;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  animation: pulse-border 2s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: #99f6e4;
+    box-shadow: 0 0 0 0 rgba(153, 246, 228, 0.4);
+  }
+  50% {
+    border-color: #5eead4;
+    box-shadow: 0 0 0 8px rgba(153, 246, 228, 0);
+  }
+}
+
+.download-info-icon {
+  font-size: 1.5rem;
+  animation: bounce-icon 2s ease-in-out infinite;
+}
+
+@keyframes bounce-icon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.download-info-text {
+  margin: 0;
+  color: #0f766e;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.playstore-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  color: white;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.playstore-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.playstore-button:hover::before {
+  left: 100%;
+}
+
+.playstore-button:hover {
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4);
+  border-color: #5eead4;
+}
+
+.playstore-button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.playstore-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.playstore-button:hover .playstore-icon {
+  transform: rotate(360deg) scale(1.1);
+}
+
+.playstore-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+  z-index: 1;
+}
+
+.playstore-label {
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  opacity: 0.95;
+  letter-spacing: 0.5px;
+}
+
+.playstore-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.playstore-shine {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    right: -50%;
+  }
+  50% {
+    right: 150%;
+  }
+  100% {
+    right: 150%;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-download {
+    margin-top: 2rem;
+  }
+  
+  .download-info {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .download-info-icon {
+    font-size: 2rem;
+  }
+  
+  .download-info-text {
+    font-size: 1rem;
+  }
+  
+  .playstore-button {
+    padding: 1rem 2rem;
+  }
+  
+  .playstore-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .playstore-label {
+    font-size: 0.75rem;
+  }
+  
+  .playstore-name {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .download-info {
+    padding: 0.875rem 1rem;
+  }
+  
+  .download-info-icon {
+    font-size: 1.25rem;
+  }
+  
+  .download-info-text {
+    font-size: 0.8rem;
+  }
+  
+  .playstore-button {
+    padding: 0.75rem 1.25rem;
+  }
+  
+  .playstore-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
