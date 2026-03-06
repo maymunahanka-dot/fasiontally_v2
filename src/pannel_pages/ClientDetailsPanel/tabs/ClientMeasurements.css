@@ -187,11 +187,19 @@
   justify-content: center;
   gap: 0.75rem;
   width: 100%;
+  box-shadow: 0 2px 8px rgba(20, 184, 166, 0.2);
 }
 
-.client_measurements_export_btn:hover {
+.client_measurements_export_btn:hover:not(:disabled) {
   background: var(--primary-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+}
+
+.client_measurements_export_btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* Mobile Responsive for Measurements */

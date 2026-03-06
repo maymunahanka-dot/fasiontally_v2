@@ -70,6 +70,22 @@ const ClientsManagement = () => {
       (snapshot) => {
         const clientsData = snapshot.docs.map((doc) => {
           const data = doc.data();
+          
+          // Helper function to safely convert dates
+          const toDate = (dateValue) => {
+            if (!dateValue) return null;
+            if (dateValue.toDate && typeof dateValue.toDate === 'function') {
+              return dateValue.toDate();
+            }
+            if (dateValue instanceof Date) {
+              return dateValue;
+            }
+            if (typeof dateValue === 'string') {
+              return new Date(dateValue);
+            }
+            return null;
+          };
+          
           return {
             id: doc.id, // This is the tenant-scoped ID
             name: data.name,
@@ -78,12 +94,12 @@ const ClientsManagement = () => {
             address: data.address || "",
             status: data.status,
             notes: data.notes || "",
-            createdAt: data.createdAt?.toDate() || new Date(),
-            updatedAt: data.updatedAt?.toDate() || new Date(),
+            createdAt: toDate(data.createdAt) || new Date(),
+            updatedAt: toDate(data.updatedAt) || new Date(),
             totalSpent: data.totalSpent || 0,
-            lastOrder: data.lastOrder?.toDate() || null,
+            lastOrder: toDate(data.lastOrder),
             hasMeasurements: data.hasMeasurements || false,
-            measurementsUpdatedAt: data.measurementsUpdatedAt?.toDate() || null,
+            measurementsUpdatedAt: toDate(data.measurementsUpdatedAt),
           };
         });
 

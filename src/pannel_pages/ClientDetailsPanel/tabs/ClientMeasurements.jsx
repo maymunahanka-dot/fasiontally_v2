@@ -1,15 +1,21 @@
 import { useState, useEffect, useContext } from "react";
 import { Plus, Ruler, Info, Download } from "lucide-react";
-import { doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
+import { doc, onSnapshot, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../backend/firebase.config";
 import NewAuthContext from "../../../contexts/NewAuthContext";
+import { getEffectiveUserEmail } from "../../../utils/teamUtils";
 import AddMeasurementModal from "../components/AddMeasurementModal";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import { createRoot } from "react-dom/client";
 import "./ClientMeasurements.css";
 
 const ClientMeasurements = ({ client }) => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [measurements, setMeasurements] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [downloadingPDF, setDownloadingPDF] = useState(false);
+  const [brandData, setBrandData] = useState(null);
   const { user } = useContext(NewAuthContext);
 
   useEffect(() => {
@@ -53,6 +59,66 @@ const ClientMeasurements = ({ client }) => {
 
     return () => unsubscribe();
   }, [client?.id]);
+
+  // Load brand data for PDF
+  useEffect(() => {
+    const loadBrandData = async () => {
+      if (!user?.email) return;
+
+      try {
+        const effectiveEmail = getEffectiveUserEmail(user);
+
+        // Load user data first
+        const userDoc = await getDoc(
+          doc(db, "fashiontally_users", effectiveEmail)
+        );
+        let userData = null;
+
+        if (userDoc.exists()) {
+          userData = userDoc.data();
+        }
+
+        // Load brand settings
+        const brandDoc = await getDoc(
+          doc(db, "fashiontally_brand_settings", effectiveEmail)
+        );
+
+        if (brandDoc.exists()) {
+          const brandData = brandDoc.data();
+          setBrandData({
+            businessName:
+              brandData.businessName || userData?.businessName || null,
+            businessAddress:
+              brandData.businessAddress || userData?.businessAddress || null,
+            businessPhone:
+              brandData.businessPhone || userData?.phoneNumber || null,
+            businessEmail: brandData.businessEmail || userData?.email || null,
+            logoUrl:
+              brandData.logoUrl ||
+              userData?.logoUrl ||
+              userData?.profilePicture ||
+              null,
+            primaryColor: brandData.primaryColor || "#14b8a6",
+            secondaryColor: brandData.secondaryColor || "#0d9488",
+          });
+        } else if (userData) {
+          setBrandData({
+            businessName: userData.businessName || null,
+            businessAddress: userData.businessAddress || null,
+            businessPhone: userData.phoneNumber || null,
+            businessEmail: userData.email || null,
+            logoUrl: userData.logoUrl || userData.profilePicture || null,
+            primaryColor: "#14b8a6",
+            secondaryColor: "#0d9488",
+          });
+        }
+      } catch (error) {
+        console.error("Error loading brand data:", error);
+      }
+    };
+
+    loadBrandData();
+  }, [user?.email]);
 
   const handleAddMeasurement = () => {
     setShowAddModal(true);
@@ -117,6 +183,360 @@ const ClientMeasurements = ({ client }) => {
       month: "short",
       day: "numeric",
     });
+  };
+
+  // PDF Component for rendering measurements
+  const MeasurementPDFComponent = ({ client, measurements, company }) => {
+    const primaryColor = company.primaryColor || "#14b8a6";
+    const allMeasurements = Object.entries(measurements || {})
+      .filter(
+        ([key, value]) =>
+          !["userEmail", "updatedAt", "customMeasurements"].includes(key) &&
+          value &&
+          typeof value === "string" &&
+          value.trim() !== ""
+      )
+      .map(([key, value]) => ({
+        key,
+        label: formatMeasurementLabel(key),
+        value: value,
+      }));
+
+    return (
+      <div
+        style={{
+          width: "1000px",
+          fontSize: "14px",
+          lineHeight: "1.6",
+          color: "#333",
+          backgroundColor: "white",
+          padding: "48px",
+        }}
+      >
+        {/* Header */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "48px",
+            borderBottom: `3px solid ${primaryColor}`,
+            paddingBottom: "24px",
+          }}
+        >
+          <div style={{ flex: 1 }}>
+            {company.logoUrl ? (
+              <img
+                src={company.logoUrl}
+                alt="Company Logo"
+                style={{ height: "80px", objectFit: "contain" }}
+                crossOrigin="anonymous"
+              />
+            ) : (
+              <div
+                style={{
+                  height: "80px",
+                  width: "80px",
+                  backgroundColor: "#f3f4f6",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "32px",
+                  fontWeight: "bold",
+                  color: "#9ca3af",
+                  borderRadius: "8px",
+                }}
+              >
+                {company.businessName?.charAt(0) || "FT"}
+              </div>
+            )}
+          </div>
+
+          <div style={{ textAlign: "right" }}>
+            <h1
+              style={{
+                fontSize: "48px",
+                fontWeight: "bold",
+                marginBottom: "8px",
+                margin: 0,
+                color: primaryColor,
+              }}
+            >
+              MEASUREMENTS
+            </h1>
+            <p style={{ fontSize: "16px", color: "#666", margin: 0 }}>
+              {formatDate(measurements.updatedAt)}
+            </p>
+          </div>
+        </div>
+
+        {/* Company & Client Info */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "48px",
+          }}
+        >
+          {/* Company Info */}
+          <div style={{ flex: 1 }}>
+            <h3
+              style={{
+                fontSize: "12px",
+                fontWeight: "600",
+                color: "#666",
+                marginBottom: "12px",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
+            >
+              From
+            </h3>
+            {company.businessName && (
+              <p
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  marginBottom: "8px",
+                  margin: "0 0 8px 0",
+                }}
+              >
+                {company.businessName}
+              </p>
+            )}
+            {company.businessAddress && (
+              <p style={{ color: "#666", margin: "4px 0" }}>
+                {company.businessAddress}
+              </p>
+            )}
+            {company.businessPhone && (
+              <p style={{ color: "#666", margin: "4px 0" }}>
+                {company.businessPhone}
+              </p>
+            )}
+            {company.businessEmail && (
+              <p style={{ color: "#666", margin: "4px 0" }}>
+                {company.businessEmail}
+              </p>
+            )}
+          </div>
+
+          {/* Client Info */}
+          <div style={{ flex: 1, textAlign: "right" }}>
+            <h3
+              style={{
+                fontSize: "12px",
+                fontWeight: "600",
+                color: "#666",
+                marginBottom: "12px",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
+            >
+              Client Information
+            </h3>
+            {client.name && (
+              <p
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  marginBottom: "8px",
+                  margin: "0 0 8px 0",
+                }}
+              >
+                {client.name}
+              </p>
+            )}
+            {client.phone && (
+              <p style={{ color: "#666", margin: "4px 0" }}>{client.phone}</p>
+            )}
+            {client.email && (
+              <p style={{ color: "#666", margin: "4px 0" }}>{client.email}</p>
+            )}
+            {client.address && (
+              <p style={{ color: "#666", margin: "4px 0" }}>
+                {client.address}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Measurements Table */}
+        <div style={{ marginBottom: "48px" }}>
+          <h3
+            style={{
+              fontSize: "18px",
+              fontWeight: "bold",
+              marginBottom: "24px",
+              color: primaryColor,
+            }}
+          >
+            Body Measurements
+          </h3>
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              border: "1px solid #e5e7eb",
+            }}
+          >
+            <thead>
+              <tr style={{ backgroundColor: primaryColor }}>
+                <th
+                  style={{
+                    padding: "16px",
+                    textAlign: "left",
+                    color: "white",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    borderBottom: "2px solid #e5e7eb",
+                  }}
+                >
+                  Measurement
+                </th>
+                <th
+                  style={{
+                    padding: "16px",
+                    textAlign: "right",
+                    color: "white",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    borderBottom: "2px solid #e5e7eb",
+                  }}
+                >
+                  Value (inches)
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {allMeasurements.map((measurement, index) => (
+                <tr
+                  key={index}
+                  style={{
+                    backgroundColor: index % 2 === 0 ? "#ffffff" : "#f9fafb",
+                  }}
+                >
+                  <td
+                    style={{
+                      padding: "14px 16px",
+                      borderBottom: "1px solid #e5e7eb",
+                      color: "#1f2937",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {measurement.label}
+                  </td>
+                  <td
+                    style={{
+                      padding: "14px 16px",
+                      textAlign: "right",
+                      borderBottom: "1px solid #e5e7eb",
+                      color: "#1f2937",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {measurement.value}"
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Footer */}
+        <div
+          style={{
+            borderTop: "2px solid #e5e7eb",
+            paddingTop: "24px",
+            textAlign: "center",
+            color: "#666",
+            fontSize: "12px",
+          }}
+        >
+          <p style={{ margin: "0 0 8px 0" }}>
+            Generated on {new Date().toLocaleDateString()}
+            {company.businessName && ` by ${company.businessName}`}
+          </p>
+          <p style={{ margin: 0, color: "#999" }}>
+            This is a computer-generated document. No signature required.
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // Handle PDF Download
+  const handleDownloadPDF = async () => {
+    if (!measurements || !client) return;
+
+    setDownloadingPDF(true);
+    try {
+      const companyData = brandData || {
+        businessName: "Your Business",
+        businessAddress: "Business Address",
+        businessPhone: "Phone Number",
+        businessEmail: "email@business.com",
+        logoUrl: null,
+        primaryColor: "#14b8a6",
+        secondaryColor: "#0d9488",
+      };
+
+      // Create temporary container
+      const tempContainer = document.createElement("div");
+      tempContainer.style.position = "absolute";
+      tempContainer.style.left = "-9999px";
+      tempContainer.style.top = "0";
+      document.body.appendChild(tempContainer);
+
+      try {
+        const root = createRoot(tempContainer);
+
+        await new Promise((resolve) => {
+          root.render(
+            <MeasurementPDFComponent
+              client={client}
+              measurements={measurements}
+              company={companyData}
+            />
+          );
+          setTimeout(resolve, 500);
+        });
+
+        const measurementElement = tempContainer.firstChild;
+        const canvas = await html2canvas(measurementElement, {
+          scale: 2,
+          backgroundColor: "#ffffff",
+          useCORS: true,
+          logging: false,
+          allowTaint: true,
+        });
+
+        const dataCanvas = canvas.toDataURL("image/png");
+
+        const pdf = new jsPDF({
+          orientation: "portrait",
+          unit: "px",
+          format: "a4",
+        });
+
+        const imgProperties = pdf.getImageProperties(dataCanvas);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight =
+          (imgProperties.height * pdfWidth) / imgProperties.width;
+
+        pdf.addImage(dataCanvas, "PNG", 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`measurements-${client.name.replace(/\s+/g, "-")}.pdf`);
+
+        root.unmount();
+      } finally {
+        document.body.removeChild(tempContainer);
+      }
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      alert("Failed to export PDF. Please try again.");
+    } finally {
+      setDownloadingPDF(false);
+    }
   };
 
   if (loading) {
@@ -267,12 +687,16 @@ const ClientMeasurements = ({ client }) => {
       </div>
 
       {/* Export Button */}
-      {/* {allMeasurements.length > 0 && (
-        <button className="client_measurements_export_btn">
+      {allMeasurements.length > 0 && (
+        <button
+          className="client_measurements_export_btn"
+          onClick={handleDownloadPDF}
+          disabled={downloadingPDF}
+        >
           <Download size={20} />
-          Export Measurements PDF
+          {downloadingPDF ? "Generating PDF..." : "Download Measurements PDF"}
         </button>
-      )} */}
+      )}
 
       {/* Add Measurement Modal */}
       <AddMeasurementModal
