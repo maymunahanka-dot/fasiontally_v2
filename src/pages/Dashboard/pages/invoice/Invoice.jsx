@@ -837,13 +837,58 @@ const Invoice = () => {
         root = createRoot(tempContainer);
 
         // Render component
-        await new Promise((resolve) => {
-          root.render(
-            <InvoicePDFComponent data={invoice} company={companyData} />
-          );
+        root.render(
+          <InvoicePDFComponent data={invoice} company={companyData} />
+        );
 
-          // Short wait for render + images
-          setTimeout(resolve, 150);
+        // Wait for component to render and all images to load
+        await new Promise((resolve) => {
+          // First wait for React to render
+          setTimeout(() => {
+            const invoiceElement = tempContainer.firstChild;
+            
+            if (!invoiceElement) {
+              resolve();
+              return;
+            }
+
+            // Find all images in the rendered component
+            const images = invoiceElement.querySelectorAll('img');
+            
+            if (images.length === 0) {
+              // No images, just wait a bit more for fonts and layout
+              setTimeout(resolve, 500);
+              return;
+            }
+
+            // Wait for all images to load
+            let loadedImages = 0;
+            const totalImages = images.length;
+            
+            const checkAllLoaded = () => {
+              loadedImages++;
+              if (loadedImages === totalImages) {
+                // All images loaded, wait a bit more for final layout
+                setTimeout(resolve, 300);
+              }
+            };
+
+            images.forEach((img) => {
+              if (img.complete) {
+                // Image already loaded (cached)
+                checkAllLoaded();
+              } else {
+                // Wait for image to load
+                img.onload = checkAllLoaded;
+                img.onerror = checkAllLoaded; // Continue even if image fails
+              }
+            });
+
+            // Fallback timeout in case something goes wrong
+            setTimeout(() => {
+              resolve();
+            }, 3000);
+          }, 200); // Initial wait for React render
         });
 
         const invoiceElement = tempContainer.firstChild;

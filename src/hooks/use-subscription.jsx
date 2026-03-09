@@ -11,6 +11,7 @@ import {
 import { db } from "../backend/firebase.config.js";
 import { useNewAuth } from "../contexts/NewAuthContext.jsx";
 import { hasFeatureAccess } from "../lib/subscription-utils.js";
+import { determinePlanType } from "../config/subscriptionPricing.js";
 
 export function useSubscription() {
   const { user } = useNewAuth();
@@ -89,9 +90,7 @@ export function useSubscription() {
 
             if (!data.planType && data.payment_amount) {
               const amount = data.payment_amount;
-              if (amount >= 25000) plan = "PROFESSIONAL";
-              else if (amount >= 15000) plan = "GROWTH";
-              else plan = "STARTER";
+              plan = determinePlanType(amount);
             }
 
             console.log(

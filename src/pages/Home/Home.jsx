@@ -11,6 +11,7 @@ import { IoClose } from "react-icons/io5";
 import { FiPhone } from "react-icons/fi";
 import "./Home.css";
 import second from "./../../assets/Image/logog.png";
+import { SUBSCRIPTION_PRICING } from "../../config/subscriptionPricing.js";
 
 // Import testimonial images
 import ummaImage from "../../assets/Image/umma_baffa.jpeg";
@@ -83,8 +84,8 @@ const features = [
 const pricingPlans = [
   {
     name: "STARTER",
-    monthlyPrice: 10000,
-    yearlyPrice: 100000,
+    monthlyPrice: SUBSCRIPTION_PRICING.starter.monthly,
+    yearlyPrice: SUBSCRIPTION_PRICING.starter.yearly,
     description: "Best for solo designers",
     badge: "Starter",
     features: [
@@ -107,8 +108,8 @@ const pricingPlans = [
   },
   {
     name: "GROWTH",
-    monthlyPrice: 15000,
-    yearlyPrice: 150000,
+    monthlyPrice: SUBSCRIPTION_PRICING.growth.monthly,
+    yearlyPrice: SUBSCRIPTION_PRICING.growth.yearly,
     description: "Ideal for growing fashion brands",
     badge: "Popular",
     features: [
@@ -133,8 +134,8 @@ const pricingPlans = [
   },
   {
     name: "PROFESSIONAL",
-    monthlyPrice: 25000,
-    yearlyPrice: 250000,
+    monthlyPrice: SUBSCRIPTION_PRICING.professional.monthly,
+    yearlyPrice: SUBSCRIPTION_PRICING.professional.yearly,
     description: "Best for studios with structured teams and higher volume",
     badge: "Pro",
     features: [

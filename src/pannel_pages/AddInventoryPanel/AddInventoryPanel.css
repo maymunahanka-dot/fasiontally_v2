@@ -175,3 +175,91 @@
 [data-theme="dark"] .add_inv_error p {
   color: #fca5a5;
 }
+
+/* Checkbox Container */
+.add_inv_checkbox_container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.add_inv_checkbox_container:hover {
+  background: var(--hover-bg);
+  border-color: var(--text-tertiary);
+}
+
+.add_inv_checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--text-tertiary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.add_inv_checkbox:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.add_inv_checkbox_label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  cursor: pointer;
+  flex: 1;
+}
+
+.add_inv_checkbox_text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.add_inv_checkbox_description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.add_inv_expense_amount {
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .add_inv_checkbox_container {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .add_inv_checkbox_container:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .add_inv_checkbox_container {
+    padding: 0.875rem;
+  }
+
+  .add_inv_checkbox {
+    width: 18px;
+    height: 18px;
+  }
+
+  .add_inv_checkbox_text {
+    font-size: 0.9rem;
+  }
+
+  .add_inv_checkbox_description {
+    font-size: 0.8rem;
+  }
+}

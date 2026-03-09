@@ -1,6 +1,14 @@
 import { useState, useEffect, useContext } from "react";
 import { X } from "lucide-react";
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  updateDoc,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../../backend/firebase.config";
 import NewAuthContext from "../../contexts/NewAuthContext";
 import { getEffectiveUserEmail } from "../../utils/teamUtils";
@@ -21,6 +29,8 @@ const AddInventoryPanel = ({ onClose, selectedItem, isEditMode }) => {
   const [minStockAlert, setMinStockAlert] = useState("");
   const [color, setColor] = useState("");
   const [description, setDescription] = useState("");
+  const [recordAsExpense, setRecordAsExpense] = useState(false); // Default to false (commented out feature)
+  const [updateFinanceTransaction, setUpdateFinanceTransaction] = useState(true); // For edit mode
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,6 +59,8 @@ const AddInventoryPanel = ({ onClose, selectedItem, isEditMode }) => {
       );
       setColor(selectedItem.color || "");
       setDescription(selectedItem.description || "");
+      setRecordAsExpense(false); // Don't record as expense when editing
+      setUpdateFinanceTransaction(true); // Default to true for editing
     } else {
       // Reset form for new item
       setItemName("");
@@ -62,6 +74,8 @@ const AddInventoryPanel = ({ onClose, selectedItem, isEditMode }) => {
       setMinStockAlert("");
       setColor("");
       setDescription("");
+      setRecordAsExpense(false); // Default to false (commented out feature)
+      setUpdateFinanceTransaction(true); // Not used for new items
     }
   }, [isEditMode, selectedItem]);
 
@@ -176,11 +190,66 @@ const AddInventoryPanel = ({ onClose, selectedItem, isEditMode }) => {
           inventoryData
         );
         console.log("Inventory item updated successfully");
+
+        // Update the related finance transaction if it exists and user wants to update
+        if (updateFinanceTransaction) {
+          try {
+            const transactionQuery = query(
+              collection(db, "fashiontally_transactions"),
+              where("userEmail", "==", getEffectiveUserEmail(user)),
+              where("reference", "==", `INV-${selectedItem.sku || selectedItem.code}`),
+              where("type", "==", "Expense")
+            );
+            const transactionSnapshot = await getDocs(transactionQuery);
+
+            if (!transactionSnapshot.empty) {
+              // Update the first matching transaction
+              const transactionDoc = transactionSnapshot.docs[0];
+              const totalCost = quantityNum * priceNum;
+              
+              await updateDoc(doc(db, "fashiontally_transactions", transactionDoc.id), {
+                description: `Inventory purchase: ${itemName.trim()}`,
+                amount: totalCost,
+                notes: `Auto-generated from inventory: ${itemName.trim()} (${quantityNum} ${unit} @ ₦${priceNum.toLocaleString()} each)`,
+                reference: `INV-${sku.trim()}`, // Update reference if SKU changed
+                updatedAt: new Date(),
+              });
+              console.log("Related finance transaction updated successfully");
+            }
+          } catch (error) {
+            console.error("Error updating related transaction:", error);
+            // Don't fail the whole operation if transaction update fails
+          }
+        }
       } else {
         // Add new item
         inventoryData.createdAt = new Date();
         await addDoc(collection(db, "fashiontally_inventory"), inventoryData);
         console.log("Inventory item added successfully");
+
+        // Create finance transaction if recordAsExpense is true
+        if (recordAsExpense) {
+          const totalCost = quantityNum * priceNum;
+          const transactionData = {
+            description: `Inventory purchase: ${itemName.trim()}`,
+            amount: totalCost,
+            type: "Expense",
+            category: "Materials",
+            date: new Date(),
+            paymentMethod: "Cash",
+            reference: `INV-${sku.trim()}`,
+            notes: `Auto-generated from inventory: ${itemName.trim()} (${quantityNum} ${unit} @ ₦${priceNum.toLocaleString()} each)`,
+            userEmail: getEffectiveUserEmail(user),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          };
+
+          await addDoc(
+            collection(db, "fashiontally_transactions"),
+            transactionData
+          );
+          console.log("Finance transaction created successfully");
+        }
       }
 
       // Reset form and close
@@ -195,6 +264,7 @@ const AddInventoryPanel = ({ onClose, selectedItem, isEditMode }) => {
       setMinStockAlert("");
       setColor("");
       setDescription("");
+      setRecordAsExpense(false); // Default to false (commented out feature)
 
       onClose();
     } catch (error) {
@@ -411,6 +481,66 @@ const AddInventoryPanel = ({ onClose, selectedItem, isEditMode }) => {
             disabled={isSubmitting}
           />
         </div>
+
+        {/* Record as Expense Checkbox - Only show when creating new item */}
+        {/* COMMENTED OUT: Finance integration feature disabled by default */}
+        {/* {!isEditMode && (
+          <div className="add_inv_form_group">
+            <div className="add_inv_checkbox_container">
+              <input
+                type="checkbox"
+                id="recordAsExpense"
+                checked={recordAsExpense}
+                onChange={(e) => setRecordAsExpense(e.target.checked)}
+                disabled={isSubmitting}
+                className="add_inv_checkbox"
+              />
+              <label htmlFor="recordAsExpense" className="add_inv_checkbox_label">
+                <span className="add_inv_checkbox_text">
+                  Record as expense in finances
+                </span>
+                <span className="add_inv_checkbox_description">
+                  Automatically create a finance transaction for this inventory purchase
+                  {quantity && pricePerUnit && (
+                    <span className="add_inv_expense_amount">
+                      {" "}(₦{(parseFloat(quantity) * parseFloat(pricePerUnit)).toLocaleString()})
+                    </span>
+                  )}
+                </span>
+              </label>
+            </div>
+          </div>
+        )} */}
+
+        {/* Update Finance Transaction Checkbox - Only show when editing */}
+        {/* COMMENTED OUT: Finance integration feature disabled by default */}
+        {/* {isEditMode && (
+          <div className="add_inv_form_group">
+            <div className="add_inv_checkbox_container">
+              <input
+                type="checkbox"
+                id="updateFinanceTransaction"
+                checked={updateFinanceTransaction}
+                onChange={(e) => setUpdateFinanceTransaction(e.target.checked)}
+                disabled={isSubmitting}
+                className="add_inv_checkbox"
+              />
+              <label htmlFor="updateFinanceTransaction" className="add_inv_checkbox_label">
+                <span className="add_inv_checkbox_text">
+                  Update related finance transaction
+                </span>
+                <span className="add_inv_checkbox_description">
+                  Automatically update the expense transaction in finances
+                  {quantity && pricePerUnit && (
+                    <span className="add_inv_expense_amount">
+                      {" "}(₦{(parseFloat(quantity) * parseFloat(pricePerUnit)).toLocaleString()})
+                    </span>
+                  )}
+                </span>
+              </label>
+            </div>
+          </div>
+        )} */}
 
         {/* Error Display */}
         {errors.submit && (

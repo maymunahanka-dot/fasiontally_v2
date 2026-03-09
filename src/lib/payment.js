@@ -1,4 +1,5 @@
 // Payment integration utilities for subscription management
+import { SUBSCRIPTION_PRICING } from '../config/subscriptionPricing.js';
 
 /**
  * Initialize Flutterwave payment
@@ -157,16 +158,16 @@ export function formatAmount(amount, currency = "NGN") {
 export function getPlanPricing(planType, billingCycle = "monthly") {
   const pricing = {
     starter: {
-      monthly: 10000,
-      yearly: 100000,
+      monthly: SUBSCRIPTION_PRICING.starter.monthly,
+      yearly: SUBSCRIPTION_PRICING.starter.yearly,
     },
     growth: {
-      monthly: 15000,
-      yearly: 150000,
+      monthly: SUBSCRIPTION_PRICING.growth.monthly,
+      yearly: SUBSCRIPTION_PRICING.growth.yearly,
     },
     professional: {
-      monthly: 25000,
-      yearly: 250000,
+      monthly: SUBSCRIPTION_PRICING.professional.monthly,
+      yearly: SUBSCRIPTION_PRICING.professional.yearly,
     },
   };
 

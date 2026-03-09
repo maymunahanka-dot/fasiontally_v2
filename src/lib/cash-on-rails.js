@@ -1,4 +1,5 @@
 // Cash on Rails payment integration for subscription management
+import { SUBSCRIPTION_PRICING } from "../config/subscriptionPricing.js";
 
 /**
  * Initialize Cash on Rails payment - Main function used by subscription page
@@ -177,7 +178,7 @@ export function getPlanDetails(planName) {
   const plans = {
     starter: {
       name: "STARTER",
-      price: 10000,
+      price: SUBSCRIPTION_PRICING.starter.monthly,
       description: "Best for solo designers",
       features: [
         "1 User",
@@ -195,7 +196,7 @@ export function getPlanDetails(planName) {
     },
     growth: {
       name: "GROWTH",
-      price: 15000,
+      price: SUBSCRIPTION_PRICING.growth.monthly,
       description: "Ideal for growing fashion brands",
       features: [
         "Up to 3 Users",
@@ -208,7 +209,7 @@ export function getPlanDetails(planName) {
     },
     professional: {
       name: "PROFESSIONAL",
-      price: 25000,
+      price: SUBSCRIPTION_PRICING.professional.monthly,
       description: "Best for studios with structured teams",
       features: [
         "Up to 10 Users",

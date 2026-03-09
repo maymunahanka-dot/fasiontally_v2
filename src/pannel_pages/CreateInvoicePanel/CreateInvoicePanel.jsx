@@ -30,7 +30,7 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
   const [paymentMethod, setPaymentMethod] = useState("Cash");
   const [status, setStatus] = useState("Unpaid");
   const [discount, setDiscount] = useState(0);
-  const [taxRate, setTaxRate] = useState(7);
+  const [taxRate, setTaxRate] = useState(7.5);
   const [items, setItems] = useState([
     {
       id: Date.now(),
@@ -49,6 +49,8 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
   const [clients, setClients] = useState([]);
   const [inventoryItems, setInventoryItems] = useState([]);
   const [selectedClientId, setSelectedClientId] = useState("");
+  const [recordAsIncome, setRecordAsIncome] = useState(false); // Default to false (commented out feature)
+  const [updateFinanceTransaction, setUpdateFinanceTransaction] = useState(true); // For edit mode
 
   const { user } = useContext(NewAuthContext);
 
@@ -82,7 +84,9 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
       setPaymentMethod(selectedInvoice.paymentMethod || "Cash");
       setStatus(selectedInvoice.status || "Unpaid");
       setDiscount(selectedInvoice.discount || 0);
-      setTaxRate(selectedInvoice.taxRate || 7);
+      setTaxRate(7.5); // Always fixed at 7.5%
+      setRecordAsIncome(false); // Don't record as income when editing
+      setUpdateFinanceTransaction(true); // Default to true for editing
       setItems(
         selectedInvoice.items?.map((item, index) => ({
           ...item,
@@ -106,6 +110,8 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
       setEmail(selectedInvoice.clientEmail || "");
       setPhone(selectedInvoice.clientPhone || "");
       setAddress(selectedInvoice.clientAddress || "");
+      setRecordAsIncome(false); // Default to false (commented out feature)
+      setUpdateFinanceTransaction(true); // Not used for new invoices
 
       // Set default dates for new invoice
       const today = new Date().toISOString().split("T")[0];
@@ -122,6 +128,8 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
         .split("T")[0];
       setInvoiceDate(today);
       setDueDate(nextWeek);
+      setRecordAsIncome(false); // Default to false (commented out feature)
+      setUpdateFinanceTransaction(true); // Not used for new invoices
     }
   }, [isEditMode, selectedInvoice]);
 
@@ -417,6 +425,37 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
         );
         invoiceId = selectedInvoice.id;
         console.log("Invoice updated successfully");
+
+        // Update the related finance transaction if it exists and user wants to update
+        if (updateFinanceTransaction) {
+          try {
+            const transactionQuery = query(
+              collection(db, "fashiontally_transactions"),
+              where("userEmail", "==", getEffectiveUserEmail(user)),
+              where("reference", "==", selectedInvoice.invoiceNumber),
+              where("type", "==", "Income")
+            );
+            const transactionSnapshot = await getDocs(transactionQuery);
+
+            if (!transactionSnapshot.empty) {
+              // Update the first matching transaction
+              const transactionDoc = transactionSnapshot.docs[0];
+              
+              await updateDoc(doc(db, "fashiontally_transactions", transactionDoc.id), {
+                description: `Invoice payment: ${invoiceData.invoiceNumber} - ${clientName.trim()}`,
+                amount: total,
+                paymentMethod: paymentMethod,
+                date: invoiceDate ? new Date(invoiceDate) : new Date(),
+                notes: `Auto-generated from invoice: ${invoiceData.invoiceNumber}\nClient: ${clientName.trim()}\nStatus: ${status}\nItems: ${items.length}`,
+                updatedAt: new Date(),
+              });
+              console.log("Related finance transaction updated successfully");
+            }
+          } catch (error) {
+            console.error("Error updating related transaction:", error);
+            // Don't fail the whole operation if transaction update fails
+          }
+        }
       } else {
         // Create new invoice
         const docRef = await addDoc(
@@ -425,6 +464,29 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
         );
         invoiceId = docRef.id;
         console.log("Invoice created successfully");
+
+        // Create finance transaction if recordAsIncome is true
+        if (recordAsIncome) {
+          const transactionData = {
+            description: `Invoice payment: ${invoiceData.invoiceNumber} - ${clientName.trim()}`,
+            amount: total,
+            type: "Income",
+            category: "Sales",
+            date: invoiceDate ? new Date(invoiceDate) : new Date(),
+            paymentMethod: paymentMethod,
+            reference: invoiceData.invoiceNumber,
+            notes: `Auto-generated from invoice: ${invoiceData.invoiceNumber}\nClient: ${clientName.trim()}\nStatus: ${status}\nItems: ${items.length}`,
+            userEmail: getEffectiveUserEmail(user),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          };
+
+          await addDoc(
+            collection(db, "fashiontally_transactions"),
+            transactionData
+          );
+          console.log("Finance transaction created successfully");
+        }
 
         // Update inventory for items (only for new invoices)
         for (const item of items) {
@@ -484,9 +546,10 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
         },
       ]);
       setDiscount(0);
-      setTaxRate(7);
+      setTaxRate(7.5);
       setStatus("Unpaid");
       setPaymentMethod("Cash");
+      setRecordAsIncome(false); // Default to false (commented out feature)
 
       onClose();
     } catch (error) {
@@ -881,12 +944,13 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
             <Input
               label="Tax Rate (%)"
               type="number"
-              placeholder="7"
+              placeholder="7.5"
               value={taxRate}
-              onChange={(e) => setTaxRate(parseFloat(e.target.value) || 0)}
+              onChange={(e) => {}} // Read-only, no changes allowed
               variant="rounded"
               min="0"
               max="100"
+              disabled={true}
             />
           </div>
         </div>
@@ -905,6 +969,66 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
             />
           </div>
         </div>
+
+        {/* Record as Income Checkbox - Only show when creating new invoice */}
+        {/* COMMENTED OUT: Finance integration feature disabled by default */}
+        {/* {!isEditMode && (
+          <div className="create_invoice_section">
+            <div className="create_invoice_checkbox_container">
+              <input
+                type="checkbox"
+                id="recordAsIncome"
+                checked={recordAsIncome}
+                onChange={(e) => setRecordAsIncome(e.target.checked)}
+                disabled={isSubmitting}
+                className="create_invoice_checkbox"
+              />
+              <label htmlFor="recordAsIncome" className="create_invoice_checkbox_label">
+                <span className="create_invoice_checkbox_text">
+                  Record as income in finances
+                </span>
+                <span className="create_invoice_checkbox_description">
+                  Automatically create a finance transaction for this invoice
+                  {calculateTotal() > 0 && (
+                    <span className="create_invoice_income_amount">
+                      {" "}({formatCurrency(calculateTotal())})
+                    </span>
+                  )}
+                </span>
+              </label>
+            </div>
+          </div>
+        )} */}
+
+        {/* Update Finance Transaction Checkbox - Only show when editing */}
+        {/* COMMENTED OUT: Finance integration feature disabled by default */}
+        {/* {isEditMode && (
+          <div className="create_invoice_section">
+            <div className="create_invoice_checkbox_container">
+              <input
+                type="checkbox"
+                id="updateFinanceTransaction"
+                checked={updateFinanceTransaction}
+                onChange={(e) => setUpdateFinanceTransaction(e.target.checked)}
+                disabled={isSubmitting}
+                className="create_invoice_checkbox"
+              />
+              <label htmlFor="updateFinanceTransaction" className="create_invoice_checkbox_label">
+                <span className="create_invoice_checkbox_text">
+                  Update related finance transaction
+                </span>
+                <span className="create_invoice_checkbox_description">
+                  Automatically update the income transaction in finances
+                  {calculateTotal() > 0 && (
+                    <span className="create_invoice_income_amount">
+                      {" "}({formatCurrency(calculateTotal())})
+                    </span>
+                  )}
+                </span>
+              </label>
+            </div>
+          </div>
+        )} */}
 
         {/* Summary Section */}
         <div className="create_invoice_summary">

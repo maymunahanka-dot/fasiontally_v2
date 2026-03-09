@@ -9,6 +9,7 @@ import { getPlanPricing } from "../../lib/payment";
 import { db } from "../../backend/firebase.config";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import "./SubscriptionPanel.css";
+import { SUBSCRIPTION_PRICING } from "../../config/subscriptionPricing.js";
 
 const SubscriptionPanel = ({ onClose }) => {
   const subscription = useSubscription();
@@ -24,8 +25,8 @@ const SubscriptionPanel = ({ onClose }) => {
     {
       id: "starter",
       name: "Starter",
-      monthlyPrice: 10000,
-      yearlyPrice: 100000,
+      monthlyPrice: SUBSCRIPTION_PRICING.starter.monthly,
+      yearlyPrice: SUBSCRIPTION_PRICING.starter.yearly,
       description: "Perfect for solo designers",
       features: [
         "1 User",
@@ -46,8 +47,8 @@ const SubscriptionPanel = ({ onClose }) => {
     {
       id: "growth",
       name: "Growth",
-      monthlyPrice: 15000,
-      yearlyPrice: 150000,
+      monthlyPrice: SUBSCRIPTION_PRICING.growth.monthly,
+      yearlyPrice: SUBSCRIPTION_PRICING.growth.yearly,
       description: "Ideal for growing fashion brands",
       badge: "Popular",
       badgeColor: "#3b82f6",
@@ -65,8 +66,8 @@ const SubscriptionPanel = ({ onClose }) => {
     {
       id: "professional",
       name: "Professional",
-      monthlyPrice: 25000,
-      yearlyPrice: 250000,
+      monthlyPrice: SUBSCRIPTION_PRICING.professional.monthly,
+      yearlyPrice: SUBSCRIPTION_PRICING.professional.yearly,
       description: "Best for studios with teams",
       badge: "Pro",
       badgeColor: "#f59e0b",

@@ -19,13 +19,14 @@ import { hasFeatureAccess } from "../../lib/subscription-utils";
 import { auth } from "../../backend/firebase.config";
 import { signOut } from "firebase/auth";
 import "./SubscriptionGate.css";
+import { SUBSCRIPTION_PRICING } from "../../config/subscriptionPricing.js";
 
 // Import pricing plans matching tally-main
 const pricingPlans = [
   {
     name: "STARTER",
-    monthlyPrice: 10000,
-    yearlyPrice: 100000,
+    monthlyPrice: SUBSCRIPTION_PRICING.starter.monthly,
+    yearlyPrice: SUBSCRIPTION_PRICING.starter.yearly,
     description: "Best for solo designers",
     badge: "Starter",
     badgeColor: "starter-badge",
@@ -49,8 +50,8 @@ const pricingPlans = [
   },
   {
     name: "GROWTH",
-    monthlyPrice: 15000,
-    yearlyPrice: 150000,
+    monthlyPrice: SUBSCRIPTION_PRICING.growth.monthly,
+    yearlyPrice: SUBSCRIPTION_PRICING.growth.yearly,
     description: "Ideal for growing fashion brands",
     badge: "Popular",
     badgeColor: "popular-badge",
@@ -76,8 +77,8 @@ const pricingPlans = [
   },
   {
     name: "PROFESSIONAL",
-    monthlyPrice: 25000,
-    yearlyPrice: 250000,
+    monthlyPrice: SUBSCRIPTION_PRICING.professional.monthly,
+    yearlyPrice: SUBSCRIPTION_PRICING.professional.yearly,
     description: "Best for studios with structured teams and higher volume",
     badge: "Pro",
     badgeColor: "pro-badge",

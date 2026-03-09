@@ -18,12 +18,13 @@ import { initiatePayment } from "../../lib/cash-on-rails";
 import Button from "../../components/button/Button";
 import Input from "../../components/Input/Input";
 import "./Subscription.css";
+import { SUBSCRIPTION_PRICING } from "../../config/subscriptionPricing.js";
 
 const pricingPlans = [
   {
     name: "STARTER",
-    monthlyPrice: 10000,
-    yearlyPrice: 100000,
+    monthlyPrice: SUBSCRIPTION_PRICING.starter.monthly,
+    yearlyPrice: SUBSCRIPTION_PRICING.starter.yearly,
     description: "Best for solo designers",
     badge: "Starter",
     badgeColor: "starter-badge",
@@ -47,8 +48,8 @@ const pricingPlans = [
   },
   {
     name: "GROWTH",
-    monthlyPrice: 15000,
-    yearlyPrice: 150000,
+    monthlyPrice: SUBSCRIPTION_PRICING.growth.monthly,
+    yearlyPrice: SUBSCRIPTION_PRICING.growth.yearly,
     description: "Ideal for growing fashion brands",
     badge: "Popular",
     badgeColor: "popular-badge",
@@ -74,8 +75,8 @@ const pricingPlans = [
   },
   {
     name: "PROFESSIONAL",
-    monthlyPrice: 25000,
-    yearlyPrice: 250000,
+    monthlyPrice: SUBSCRIPTION_PRICING.professional.monthly,
+    yearlyPrice: SUBSCRIPTION_PRICING.professional.yearly,
     description: "Best for studios with structured teams and higher volume",
     badge: "Pro",
     badgeColor: "pro-badge",

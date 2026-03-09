@@ -361,3 +361,116 @@
     font-size: 0.9rem;
   }
 }
+
+/* Checkbox Container */
+.create_invoice_checkbox_container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.create_invoice_checkbox_container:hover {
+  background: var(--hover-bg);
+  border-color: var(--text-tertiary);
+}
+
+.create_invoice_checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--text-tertiary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.create_invoice_checkbox:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.create_invoice_checkbox_label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  cursor: pointer;
+  flex: 1;
+}
+
+.create_invoice_checkbox_text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.create_invoice_checkbox_description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.create_invoice_income_amount {
+  font-weight: 600;
+  color: var(--success-color);
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .create_invoice_checkbox_container {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .create_invoice_checkbox_container:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .create_invoice_checkbox_container {
+    padding: 0.875rem;
+  }
+
+  .create_invoice_checkbox {
+    width: 18px;
+    height: 18px;
+  }
+
+  .create_invoice_checkbox_text {
+    font-size: 0.9rem;
+  }
+
+  .create_invoice_checkbox_description {
+    font-size: 0.8rem;
+  }
+}
+
+/* Error Styles */
+.create_invoice_error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.create_invoice_error p {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Dark theme error styles */
+[data-theme="dark"] .create_invoice_error {
+  background-color: rgba(220, 38, 38, 0.1);
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+[data-theme="dark"] .create_invoice_error p {
+  color: #fca5a5;
+}

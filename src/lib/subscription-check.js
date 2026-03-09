@@ -157,11 +157,10 @@ const getFallbackAccess = () => ({
   subscriptionType: "paid",
 });
 
+import { determinePlanType as getPlanTypeFromAmount } from "../config/subscriptionPricing.js";
+
 function determinePlanType(amount) {
-  if (amount >= 25000) return "PROFESSIONAL";
-  if (amount >= 15000) return "GROWTH";
-  if (amount >= 10000) return "STARTER";
-  return "Free";
+  return getPlanTypeFromAmount(amount);
 }
 
 export async function addTestSubscription(email, uuid, options = {}) {
