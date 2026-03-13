@@ -12,6 +12,7 @@ import { FiPhone } from "react-icons/fi";
 import "./Home.css";
 import second from "./../../assets/Image/logog.png";
 import { SUBSCRIPTION_PRICING } from "../../config/subscriptionPricing.js";
+import { FiHome } from "react-icons/fi";
 
 // Import testimonial images
 import ummaImage from "../../assets/Image/umma_baffa.jpeg";
@@ -823,6 +824,12 @@ const Home = () => {
                     <FiPhone size={16} />
                   </span>
                   <span>+1 (332) 322-4202</span>
+                </div>
+                <div className="contact-item">
+                  <span className="contact-icon">
+                    <FiHome size={16} />
+                  </span>
+                  <span>No1 Gidado Road Kano, Kano State</span>
                 </div>
                 <div className="contact-item">
                   <span className="contact-icon">
