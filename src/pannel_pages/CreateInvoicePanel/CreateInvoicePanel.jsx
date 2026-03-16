@@ -66,6 +66,7 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
   useEffect(() => {
     if (isEditMode && selectedInvoice) {
       // Edit mode - populate all invoice data
+      setSelectedClientId("");
       setClientName(selectedInvoice.clientName || "");
       setEmail(selectedInvoice.clientEmail || "");
       setPhone(selectedInvoice.clientPhone || "");
@@ -106,6 +107,7 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
       );
     } else if (!isEditMode && selectedInvoice) {
       // New invoice with pre-filled client data
+      setSelectedClientId("");
       setClientName(selectedInvoice.clientName || "");
       setEmail(selectedInvoice.clientEmail || "");
       setPhone(selectedInvoice.clientPhone || "");
@@ -122,6 +124,11 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
       setDueDate(nextWeek);
     } else {
       // Reset form for completely new invoice
+      setSelectedClientId("");
+      setClientName("");
+      setEmail("");
+      setPhone("");
+      setAddress("");
       const today = new Date().toISOString().split("T")[0];
       const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
         .toISOString()
@@ -549,7 +556,8 @@ const CreateInvoicePanel = ({ onClose, selectedInvoice, isEditMode }) => {
       setTaxRate(7.5);
       setStatus("Unpaid");
       setPaymentMethod("Cash");
-      setRecordAsIncome(false); // Default to false (commented out feature)
+      setRecordAsIncome(false);
+      setSelectedClientId("");
 
       onClose();
     } catch (error) {

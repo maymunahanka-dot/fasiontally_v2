@@ -33,6 +33,13 @@ import InvoiceViewPanel from "../../../../pannel_pages/InvoiceViewPanel";
 import Loading from "../../../../components/Loading/Loading";
 import "./Invoice.css";
 
+const toDate = (val) => {
+  if (!val) return new Date();
+  if (typeof val.toDate === "function") return val.toDate(); // live Firestore Timestamp
+  if (val._seconds !== undefined) return new Date(val._seconds * 1000); // serialized Timestamp
+  return new Date(val); // string or number
+};
+
 const Invoice = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilter, setShowFilter] = useState(false);
@@ -85,30 +92,14 @@ const Invoice = () => {
             taxAmount: data.taxAmount || 0,
             status: data.status,
             paymentMethod: data.paymentMethod,
-            createdDate: data.createdDate?.toDate
-              ? data.createdDate.toDate()
-              : data.createdDate
-              ? new Date(data.createdDate)
-              : new Date(),
-            dueDate: data.dueDate?.toDate
-              ? data.dueDate.toDate()
-              : data.dueDate
-              ? new Date(data.dueDate)
-              : new Date(),
+            createdDate: toDate(data.createdDate),
+            dueDate: toDate(data.dueDate),
             items: data.items || [],
             notes: data.notes || "",
             discount: data.discount || 0,
             taxRate: data.taxRate || 7.5,
-            createdAt: data.createdAt?.toDate
-              ? data.createdAt.toDate()
-              : data.createdAt
-              ? new Date(data.createdAt)
-              : new Date(),
-            updatedAt: data.updatedAt?.toDate
-              ? data.updatedAt.toDate()
-              : data.updatedAt
-              ? new Date(data.updatedAt)
-              : new Date(),
+            createdAt: toDate(data.createdAt),
+            updatedAt: toDate(data.updatedAt),
           };
         });
 
@@ -279,7 +270,8 @@ const Invoice = () => {
   };
 
   const formatCurrency = (amount) => {
-    return `₦${amount.toLocaleString()}`;
+    const num = parseFloat(amount);
+    return `₦${isNaN(num) ? "0" : num.toLocaleString()}`;
   };
 
   // PDF Component for rendering (matches InvoiceViewPanel design)
@@ -1121,7 +1113,7 @@ const Invoice = () => {
                   <div className="inv_invoice_basic_info">
                     <h3 className="inv_invoice_id">{invoice.invoiceNumber}</h3>
                     <p className="inv_invoice_date">
-                      {invoice.createdDate.toLocaleDateString()}
+                      {invoice.createdDate?.toLocaleDateString?.() ?? ""}
                     </p>
                     <p className="inv_invoice_client">{invoice.clientName}</p>
                   </div>
@@ -1131,11 +1123,11 @@ const Invoice = () => {
                     {formatCurrency(invoice.amount)}
                   </div>
                   <div
-                    className={`inv_status_badge ${invoice.status
+                    className={`inv_status_badge ${(invoice.status ?? "")
                       .toLowerCase()
                       .replace(" ", "")}`}
                   >
-                    {invoice.status}
+                    {invoice.status ?? ""}
                   </div>
                 </div>
               </div>
