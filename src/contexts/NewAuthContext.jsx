@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { auth, db, provider } from "../backend/firebase.config";
+import { sendWhatsAppTemplate } from "../backend/services/whatsapp.service";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -353,6 +354,14 @@ export const NewAuthProvider = ({ children }) => {
         `Welcome ${name}! Account created successfully. You have a 7-day free trial to explore all features.`
       );
 
+      // Send WhatsApp welcome message to the user's phone number
+      if (phone) {
+        const waResult = await sendWhatsAppTemplate(phone, { 1: name });
+        if (waResult && !waResult.success) {
+          toast.error(`WhatsApp welcome message could not be sent: ${waResult.error}`);
+        }
+      }
+
       // Check if there's a selected plan in URL params
       const urlParams = new URLSearchParams(window.location.search);
       const selectedPlan = urlParams.get("plan");
@@ -534,6 +543,14 @@ export const NewAuthProvider = ({ children }) => {
             : ""
         }`
       );
+
+      // Send WhatsApp welcome message only for new Google sign-ups that have a phone number
+      if (!userDoc.exists() && firebaseUser.phoneNumber) {
+        const waResult = await sendWhatsAppTemplate(firebaseUser.phoneNumber, { 1: name });
+        if (waResult && !waResult.success) {
+          toast.error(`WhatsApp welcome message could not be sent: ${waResult.error}`);
+        }
+      }
 
       // Check if there's a selected plan in URL params
       const urlParams = new URLSearchParams(window.location.search);
