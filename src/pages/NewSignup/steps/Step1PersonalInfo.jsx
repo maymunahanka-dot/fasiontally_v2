@@ -7,7 +7,7 @@ import Input from "../../../components/Input";
 import Button from "../../../components/button/Button";
 import OTPVerificationModal from "../../../components/OTPVerificationModal/OTPVerificationModal";
 import toast from "react-hot-toast";
-import { sendOTP, generateOTP } from "../../../utils/emailService";
+import { sendWhatsAppOTP } from "../../../backend/services/whatsapp.service";
 
 const Step1PersonalInfo = ({
   formData,
@@ -65,33 +65,23 @@ const Step1PersonalInfo = ({
 
   const handleNext = async () => {
     if (validateStep1()) {
-      // Generate OTP
-      const otp = generateOTP();
-      setGeneratedOTP(otp);
-
-      // Show OTP modal
       setShowOTPModal(true);
       setIsSendingOTP(true);
 
       try {
-        // Send OTP via email service
-        const result = await sendOTP({
-          mail: formData.email,
-          name: formData.name,
-          otp: otp,
-        });
+        // Send OTP via WhatsApp — returns the generated OTP
+        const result = await sendWhatsAppOTP(formData.phone);
 
         if (result.success) {
-          toast.success("OTP sent to your email!");
-          console.log("✅ OTP sent successfully");
+          setGeneratedOTP(result.otp);
+          toast.success("OTP sent to your WhatsApp!");
+          console.log("✅ WhatsApp OTP sent successfully");
         } else {
           throw new Error(result.error || "Failed to send OTP");
         }
       } catch (error) {
-        console.error("❌ Error sending OTP:", error);
+        console.error("❌ Error sending WhatsApp OTP:", error);
         toast.error("Failed to send OTP. Please try again.");
-        // Still show OTP in console for development
-        console.log("🔐 Generated OTP (fallback):", otp);
       } finally {
         setIsSendingOTP(false);
       }
@@ -286,8 +276,8 @@ const Step1PersonalInfo = ({
         title="Verify Your Account"
         message={
           isSendingOTP
-            ? "Sending verification code..."
-            : `We've sent a verification code to ${formData.email}. Please enter it below.`
+            ? "Sending verification code via WhatsApp..."
+            : `We've sent a verification code to your WhatsApp (${formData.phone}). Please enter it below.`
         }
         otpLength={6}
       />
