@@ -177,7 +177,8 @@ const Inventory = () => {
   });
 
   const formatCurrency = (amount) => {
-    return `₦${amount.toLocaleString()}`;
+    const num = parseFloat(amount);
+    return `₦${isNaN(num) ? "0" : num.toLocaleString()}`;
   };
 
   const handleAddInventoryClick = () => {
